@@ -1,0 +1,85 @@
+public class Unit
+{
+    private String name;
+    private integer HP;
+    private integer dmgMin;
+    private integer dmgMax;
+    
+    public Unit(String vName,integer vHP,integer vMinDmg, integer vMaxDmg)
+    {
+        name = vName;
+        HP = vHP;
+        dmgMin = vMinDmg;
+        dmgMax = vMaxDmg;
+    }
+    
+    public String getName()
+    {return name;}
+    
+    public void setName(String vName)
+    {name = vName;}
+    
+    public Integer getHP()
+    {return HP;}
+    
+    public void sethHP(integer vHP)
+    {HP = vHP;}
+    
+    public Integer getDmgMin()
+    {return dmgMin;}
+    
+    public void setDmgMin(integer vdmgMin)
+    {dmgMin = vdmgMin;}
+    
+    public Integer getDmgMax()
+    {return dmgMax;}
+    
+    public void setDmgMax(integer vdmgMax)
+    {dmgMax = vdmgMax;}
+  
+}
+
+public class Game
+{
+    public integer getHit(integer wdmgMin,integer wdmgMax )
+        { 
+            return (Integer)(Math.floor(Math.random() * (wdmgMax - wdmgMin + 1) + wdmgMin));
+        }
+
+    public String Fight(Unit unOrc, Unit unHuman)
+        {
+            integer dmgHum = getHit(unOrc.getDmgMin(),unOrc.getDmgMax());
+            integer lostLifeHum = unHuman.getHP() - dmgHum;
+            unHuman.sethHP(lostLifeHum);
+            
+            if (lostLifeHum<=0)
+            {
+                System.debug('After hit Life of human is ' +unHuman.getHP() + ' Hit is ' +dmgHum );
+                return unOrc.getName();
+            }
+                       
+            integer dmgOrc = getHit(unHuman.getDmgMin(),unHuman.getDmgMax());
+            integer lostLifeOrc = unOrc.getHP() - dmgOrc;
+            unOrc.sethHP(lostLifeOrc);
+            if (lostLifeOrc<=0)
+            {
+                System.debug('After hit Life of orc is ' +unOrc.getHP() + ' Hit is ' +dmgOrc);
+                return unHuman.getName();
+            }
+                         
+            System.debug('Life of human is ' +unHuman.getHP());
+            System.debug('Life of orc is ' +unOrc.getHP());
+            
+            return Fight(unOrc,unHuman);
+         } 
+    
+ }
+ 
+ public class GameCall
+	{
+		Unit warrior1 = new Unit('Big',100,10,20);
+		Unit warrior2 = new Unit('Little',80,20,20);
+		Game newGame = new Game();
+		String Winner = newGame.Fight(warrior1,warrior2);
+		System.debug(Winner);
+	}
