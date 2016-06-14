@@ -1,0 +1,27 @@
+<apex:page controller="GameCall" >
+  <apex:form >
+    <apex:pageBlock >
+        <apex:panelGrid columns="1" rules="all" frame="box" >
+        <apex:panelGrid columns="2" >
+       
+        Warrior 1 :<apex:inputtext value="{!inputName1}"/>
+        Healing points 1 :<apex:inputtext value="{!inputHP1}" id="fieldHP1" />
+        Minimum damage 1 :<apex:inputtext value="{!inputDmgMin1}"/>
+        Maximum damage 1 :<apex:inputtext value="{!inputDmgMax1}"/>
+        </apex:panelGrid>
+ 
+        <apex:panelGrid columns="2" > 
+        Warrior 2 :<apex:inputtext value="{!inputName2}"/>
+        Healing points 2 :<apex:inputtext value="{!inputHP2}" id="fieldHP2" />
+        Minimum damage 2 :<apex:inputtext value="{!inputDmgMin2}"/>
+        Maximum damage 2 :<apex:inputtext value="{!inputDmgMax2}"/>
+        </apex:panelGrid>
+        </apex:panelGrid>
+        <apex:commandButton action="{!ownSave}" value="Start!"  reRender="RefreshField" />
+    </apex:pageBlock>
+    
+    <apex:pageBlock id="RefreshField">
+         Победитель :<apex:inputtext value="{!Winner}"/>
+    </apex:pageBlock>
+ </apex:form>
+</apex:page>
