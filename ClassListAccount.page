@@ -1,0 +1,14 @@
+<apex:page controller="ReportClass">
+ {!myResults}
+ <apex:form id="changePrivacyForm">
+    <apex:commandButton value="Process" action="{!processWrapps}"/>
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!accounts}"  var="o">
+                <apex:column headerValue="is Selected?">
+                    <apex:inputCheckbox value="{!o.checkbox}"/>
+                </apex:column>
+                <apex:column headerValue="Name" value="{!o.acc.name}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+ </apex:page>
