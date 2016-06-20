@@ -1,0 +1,57 @@
+<apex:page controller="GameCallObj" >
+  <apex:form >
+     <apex:pageBlock >
+     <apex:outputLabel >Choose warrior1:</apex:outputLabel>
+     <apex:selectList value="{!selectedWar1}" size="1" >
+     <apex:selectOptions value="{!pickList1}"/>
+     <apex:actionSupport event="onchange" reRender="out,idsel" action="{!refreshFields}" />
+     </apex:selectList> 
+     <br/><br/>
+     <apex:outputLabel >Choose warrior2:</apex:outputLabel>
+     <apex:selectList value="{!selectedWar2}" size="1" id="idsel" >
+     <apex:selectOptions value="{!pickList2}"/>
+     <apex:actionSupport event="onchange" reRender="out" action="{!refreshFields2}" />
+     </apex:selectList> 
+     </apex:pageBlock>
+    
+     <apex:pageBlock >
+     <apex:panelGrid columns="1" rules="all" frame="box" >
+       <apex:panelGrid columns="3" id="out"> 
+       <apex:outputtext value="" />
+       <apex:outputtext value="Warrior 1 :" />
+       <apex:outputtext value="Warrior 2 :" />
+       
+       <apex:outputtext value="" />
+       <apex:outputtext value="{!inputName1}"/>
+       <apex:outputtext value="{!inputName2}"/>
+        
+       <apex:outputtext value="Healing points" />
+       <apex:outputtext value="{!inputHP1}" id="fieldHP1" />
+       <apex:outputtext value="{!inputHP2}" id="fieldHP2" />
+       
+       <apex:outputtext value="Minimum damage" />
+       <apex:outputtext value="{!inputDmgMin1}"/>
+       <apex:outputtext value="{!inputDmgMin2}"/>
+       
+       <apex:outputtext value="Maximum damage" />
+       <apex:outputtext value="{!inputDmgMax1}"/>
+       <apex:outputtext value="{!inputDmgMax2}"/>
+       </apex:panelGrid>
+     </apex:panelGrid>
+     
+     <apex:commandButton action="{!ownStart}" value="Start!"  reRender="RefreshField" />
+     </apex:pageBlock>
+     <br/><br/>
+     <apex:pageBlock >
+     <apex:commandButton action="{!ownEditWar1}" value="Edit first warrior" />
+     <br/><br/>
+     <apex:commandButton action="{!ownEditWar2}" value="Edit second warrior" />
+     <br/><br/>
+     <apex:commandButton action="{!ownSave}" value="New warrior in the Tab!" />
+     </apex:pageBlock>
+    <apex:pageBlock id="RefreshField">
+       Победитель :<apex:inputtext value="{!Winner}"/>
+    </apex:pageBlock>
+ </apex:form>
+</apex:page>
+                             
