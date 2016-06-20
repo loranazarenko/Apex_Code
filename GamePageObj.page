@@ -16,7 +16,7 @@
     
      <apex:pageBlock >
      <apex:panelGrid columns="1" rules="all" frame="box" >
-       <apex:panelGrid columns="3" id="out"> 
+       <apex:panelGrid columns="3" id="out" cellPadding="4" border="1"> 
        <apex:outputtext value="" />
        <apex:outputtext value="Warrior 1 :" />
        <apex:outputtext value="Warrior 2 :" />
