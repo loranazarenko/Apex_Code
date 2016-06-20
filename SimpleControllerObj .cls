@@ -4,21 +4,17 @@
 */
 public class SimpleControllerObj
 {
-   /** Objects of the Account's class */
-   public Account company1{get;set;}
-   public Account company2{get;set;}
+   /** List of Objects of the Account's class */
+   public List<Account> companies{get;set;}
    
-   /** Objects of the Order's class */
-   public Order__c order1{get;set;}
-   public Order__c order2{get;set;}
+   /** List of Objects of the Order's class */
+   public List<Order__c> orders{get;set;}
    
-   /** Objects of the Rate's class */
-   public Rate__c rate1{get;set;}
-   public Rate__c rate2{get;set;}
+   /** List of Objects of the Rate's class */
+   public List<Rate__c> rates{get;set;}
    
-   /** Objects of the WorkPeriod's class */
-   public Work_Period__c wp1{get;set;}
-   public Work_Period__c wp2{get;set;}
+   /** List of Objects of the WorkPeriod's class */
+   public List<Work_Period__c> wps{get;set;}
   
    /**
    * Constructor of the class SimpleController, it creates instances of all classes
@@ -37,8 +33,7 @@ public class SimpleControllerObj
    
    public void createCompany()
    {
-     company1 = [select Id, Name from Account][0];    
-     company2 = [select Id, Name from Account][1];     
+     companies = [select Id, Name from Account limit 2];         
    }
  
    /**
@@ -46,8 +41,7 @@ public class SimpleControllerObj
    */
    public void createOrder()
    {
-     order1 = [select Id, Name from Order__c][0];     
-     order2 = [select Id, Name from Order__c][1];  
+     orders = [select Id, Name from Order__c limit 2];     
    }
    
    /**
@@ -55,8 +49,7 @@ public class SimpleControllerObj
    */
    public void createRate()
    {
-     rate1 = [select Id, Name from Rate__c][0];        
-     rate2 = [select Id, Name from Rate__c][0];   
+     rates = [select Id, Name, Customer_Rate__c, Employer_Rate__c from Rate__c limit 2];        
    }
    
    /**
@@ -64,7 +57,6 @@ public class SimpleControllerObj
    */
    public void createWP()
    {
-     wp1 = [select Id, Name from Work_Period__c ][0]; 
-     wp2 = [select Id, Name from Work_Period__c ][0]; 
+     wps = [select Id, Name from Work_Period__c limit 2]; 
    }
 }
