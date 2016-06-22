@@ -1,8 +1,8 @@
-/**
+**
 *@author LNazarenko
 * This class - custom Controller defines instances for output on the visual page
 */
-public class SimpleControllerObj
+public with sharing class SimpleControllerObj
 {
    /** List of Objects of the Account's class */
    public List<Account> companies{get;set;}
@@ -21,42 +21,50 @@ public class SimpleControllerObj
    */
    public SimpleControllerObj()
    {
-     createCompany();
-     createOrder();
-     createRate();
-     createWP(); 
+     getCompany();
+     getOrder();
+     getRate();
+     getWP(); 
    }
   
    /**
    * Method creates Account's instances
    */
    
-   public void createCompany()
+   public List<Account> getCompany()
    {
-     companies = [select Id, Name from Account limit 2];         
+     companies = [select Id, Name from Account];   
+     System.Debug(companies);
+     return companies;     
    }
  
    /**
    * Method creates Order's instances
    */
-   public void createOrder()
+   public List<Order__c> getOrder()
    {
-     orders = [select Id, Name from Order__c limit 2];     
+     orders = [select Id, Name,Account__r.Id from Order__c where Account__r.Id IN:companies];  
+     System.Debug(orders); 
+     return orders;      
    }
    
    /**
    * Method creates Rate's instances
    */
-   public void createRate()
+   public List<Rate__c> getRate()
    {
-     rates = [select Id, Name, Customer_Rate__c, Employer_Rate__c from Rate__c limit 2];        
+     rates = [select Id, Name, Customer_Rate__c, Employer_Rate__c from Rate__c];    
+     System.Debug(rates);
+     return rates;      
    }
    
    /**
    * Method creates WorkPeriod's instances
    */
-   public void createWP()
+   public List<Work_Period__c> getWP()
    {
-     wps = [select Id, Name from Work_Period__c limit 2]; 
+     wps = [select Id, Name, Order__r.Id,Order__r.Account__r.Name, Rate__r.Id, Rate__r.Customer_Rate__c, Rate__r.Employer_Rate__c from Work_Period__c where Order__r.Id IN:orders]; 
+     System.Debug(wps);
+     return wps;
    }
 }
