@@ -26,6 +26,9 @@ public class GameCallObj
     /** warrior1 - creates new game */
     GameObj newGame;
     
+    public string searchstring {get;set;}  
+    public list <Unit__c> units {get;set;}  
+    
     /** warrior1 - list warriors for the picklist1 */
     public List<Unit__c> warriors1{get;set;}
     /** warrior1 - list warriors for the picklist2 */
@@ -157,5 +160,23 @@ public class GameCallObj
         unPage.setRedirect(true);
         return unPage;
     }
-   
+    
+    /** 
+    * The method searches warriors by input string
+    * @return string with names
+    */
+    public void search() 
+    {  
+       string searchquery='select name,id from Unit__c where name like \'%'+searchstring+'%\'';  
+       units = Database.query(searchquery);  
+    } 
+    
+    /** 
+    * The method clears search string
+    */
+    public void clear()
+    {  
+       units.clear();  
+    }  
+    
 }
