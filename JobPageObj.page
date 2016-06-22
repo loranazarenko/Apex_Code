@@ -1,30 +1,18 @@
-<apex:page controller="SimpleControllerObj">
-  <apex:form >
-    <apex:pageBlock >
-     <apex:panelGrid columns="1" rules="all" frame="box" >
-       <apex:panelGrid columns="3" > 
-       <apex:outputtext value="" />
-       <apex:outputtext value="Company 1" />
-       <apex:outputtext value="Company 2" />
-       
-       <apex:outputtext value="" />
-       <apex:inputtext value="{!companies[0].name}"/>
-       <apex:inputtext value="{!companies[1].name}" />
-    
-       <apex:outputtext value="Work period" />
-       <apex:inputtext value="{!wps[0].name}"/>
-       <apex:inputtext value="{!wps[1].name}" />
-      
-       <apex:outputtext value="Margin Amount" />
-       <apex:inputtext value="{!rates[0].Customer_Rate__c}"/>
-       <apex:inputtext value="{!rates[1].Customer_Rate__c}"/> 
-       
-       <apex:outputtext value="Revenue Amount" />
-       <apex:inputtext value="{!rates[0].Employer_Rate__c}"/>
-       <apex:inputtext value="{!rates[1].Employer_Rate__c}"/> 
-  
-       </apex:panelGrid> 
-     </apex:panelGrid>
+<apex:page id="WorkPeriodByCompany" controller="SimpleControllerObj">
+ <apex:form >
+   <apex:pageBlock title="Work period">
+     <apex:pageBlockSection columns="2">
+       <apex:pageBlockTable value="{!wps}" var="wpItem">
+         <apex:column value="{!wpItem.Name}"/>
+         <apex:repeat value="{!companies}" var="comp">
+             <apex:column headerValue="{!comp.Name}">
+              <apex:outputText value="{!if(wpItem.Order__r.Account__r.Name==comp.Name, 'Revenue:'+Text(wpItem.Rate__r.Customer_Rate__c), '')}"/>
+              <apex:outputText value=" "/>
+              <apex:outputText value="{!if(wpItem.Order__r.Account__r.Name==comp.Name, 'Margin:'+Text(wpItem.Rate__r.Employer_Rate__c), '')}"/>
+             </apex:column>
+          </apex:repeat>
+        </apex:pageBlockTable>
+      </apex:pageBlockSection>
     </apex:pageBlock>
-   </apex:form>  
- </apex:page>
+ </apex:form>
+</apex:page>
