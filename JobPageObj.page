@@ -1,18 +1,15 @@
-<apex:page id="WorkPeriodByCompany" controller="SimpleControllerObj">
- <apex:form >
-   <apex:pageBlock title="Work period">
-     <apex:pageBlockSection columns="2">
-       <apex:pageBlockTable value="{!wps}" var="wpItem">
+<apex:page controller="SimpleControllerObj">
+   <apex:pageBlock title="Work period" >
+       <apex:pageBlockTable value="{!wps}" var="wpItem" >
          <apex:column value="{!wpItem.Name}"/>
-         <apex:repeat value="{!companies}" var="comp">
-             <apex:column headerValue="{!comp.Name}">
-              <apex:outputText value="{!if(wpItem.Order__r.Account__r.Name==comp.Name, 'Revenue:'+Text(wpItem.Rate__r.Customer_Rate__c), '')}"/>
-              <apex:outputText value=" "/>
-              <apex:outputText value="{!if(wpItem.Order__r.Account__r.Name==comp.Name, 'Margin:'+Text(wpItem.Rate__r.Employer_Rate__c), '')}"/>
-             </apex:column>
+         <apex:repeat value="{!companies}" var="comp" >
+             <apex:column headerValue="{!comp.Name}" >
+                <apex:dataTable border="1" value="{!wpItem.Rate__r}" var="rtr" rendered="{!comp.Name==wpItem.Order__r.Account__r.Name}">
+                 <apex:column value="{!rtr.Customer_Rate__c}"/>
+                 <apex:column value="{!rtr.Employer_Rate__c}"/>
+                </apex:dataTable>
+              </apex:column> 
           </apex:repeat>
         </apex:pageBlockTable>
-      </apex:pageBlockSection>
     </apex:pageBlock>
- </apex:form>
 </apex:page>
