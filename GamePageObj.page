@@ -52,18 +52,24 @@
     <apex:pageBlock id="RefreshField">
        Победитель :<apex:inputtext value="{!Winner}"/>
     </apex:pageBlock>
-    <apex:pageBlock>
+    <apex:pageBlock >
       <apex:inputText value="{!searchstring}" label="Input"/>   
-      <apex:commandButton value="Search records" action="{!search}"/>  
+      <apex:commandButton value="Search records SOQL and SOSL" action="{!search}"/>  
       <apex:commandButton value="Clear records" action="{!clear}"/>  
-      <apex:pageBlock title="Search Result">  
-      <apex:pageblockTable value="{!units}" var="un">  
-      <apex:column >  
-       <apex:outputlink value="https://ap1.salesforce.com/{!un.id}">{!un.Name}</apex:outputlink>  
-      </apex:column>  
-      <apex:column value="{!un.id}"/>  
-     </apex:pageBlockTable>     
-    </apex:pageBlock>   
+       <apex:pageBlock title="Search Result">  
+        <apex:pageblockTable value="{!unitsSOQL}" var="qwer">  
+         <apex:column headerValue="Name from SOQL" title="SOQL">  
+          <apex:outputlink value="https://ap1.salesforce.com/{!qwer.id}">{!qwer.Name}</apex:outputlink>  
+         </apex:column>  
+         <apex:column value="{!qwer.id}"/>  
+        </apex:pageBlockTable>   
+        <apex:pageblockTable value="{!unitsSOSL}" var="search">  
+         <apex:column headerValue="Name from SOSL" title="SOSL" >  
+          <apex:outputlink value="https://ap1.salesforce.com/{!search.id}">{!search.Name}</apex:outputlink>  
+         </apex:column>  
+         <apex:column value="{!search.id}"/>  
+        </apex:pageBlockTable>    
+     </apex:pageBlock>   
     </apex:pageBlock>
  </apex:form>
 </apex:page>
