@@ -26,8 +26,12 @@ public class GameCallObj
     /** warrior1 - creates new game */
     GameObj newGame;
     
+    /** string value for search */
     public string searchstring {get;set;}  
-    public list <Unit__c> units {get;set;}  
+    /** list the list of found units by SOQL */
+    public List<Unit__c> unitsSOQL {get;set;}  
+    /** list the list of found units by SOSL */
+    public List<Unit__c> unitsSOSL {get;set;}  
     
     /** warrior1 - list warriors for the picklist1 */
     public List<Unit__c> warriors1{get;set;}
@@ -162,21 +166,22 @@ public class GameCallObj
     }
     
     /** 
-    * The method searches warriors by input string
-    * @return string with names
+    * SOQL and SOSL The methods searches warriors by input string
     */
     public void search() 
     {  
-       string searchquery='select name,id from Unit__c where name like \'%'+searchstring+'%\'';  
-       units = Database.query(searchquery);  
-    } 
+       string searchquerySOQL ='select name,id from Unit__c where name like \'%'+searchstring+'%\'';  
+       unitsSOQL = Database.query(searchquerySOQL);  
+       unitsSOSL = (List<Unit__c>)([FIND :searchstring IN ALL Fields RETURNING Unit__c(name,id)][0]);
+     } 
     
     /** 
-    * The method clears search string
+    * The method clears search results
     */
     public void clear()
     {  
-       units.clear();  
+       unitsSOQL.clear();  
+       unitsSOSL.clear();
     }  
     
 }
