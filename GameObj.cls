@@ -60,17 +60,19 @@ public class GameObj
           integer randAtt = randType(); 
           integer randBlc = randType(); 
                    
-          if(randAtt == randBlc)
+          if(randAtt != randBlc)
           { 
-          integer dmgHum = getHit((integer)unOrc.dmgMin__c,(integer)unOrc.dmgMax__c);
-          integer lostLifeHum = reduceLife((integer)unHuman.HP__c,dmgHum);
-          unHuman.HP__c = lostLifeHum;
-          update unHuman;     
-          if (lostLifeHum<=0)
-          {
-            System.debug('After hit Life of human is ' +unHuman.HP__c + ' Hit is ' +dmgHum );
-            return unOrc.name;
-          }
+            integer dmgHum = getHit((integer)unOrc.dmgMin__c,(integer)unOrc.dmgMax__c);
+            integer lostLifeHum = reduceLife((integer)unHuman.HP__c,dmgHum);
+            unHuman.HP__c = lostLifeHum;
+            update unHuman;     
+            if (lostLifeHum<=0)
+            {
+              unHuman.HP__c = 0;
+              update unHuman;   
+              System.debug('After hit Life of human is ' +unHuman.HP__c + ' Hit is ' +dmgHum );
+              return unOrc.name;
+            }
          }
        }
        else
@@ -78,17 +80,19 @@ public class GameObj
           integer randAtt = randType(); 
           integer randBlc = randType(); 
           
-          if(randAtt == randBlc)
+          if(randAtt != randBlc)
           {     
-           integer dmgOrc = getHit((integer)unHuman.dmgMin__c,(integer)unHuman.dmgMax__c);
-           integer lostLifeOrc = reduceLife((integer)unOrc.HP__c,dmgOrc);
-           unOrc.HP__c=lostLifeOrc;
-           update unOrc;
-           if (lostLifeOrc<=0)
-           {
-              System.debug('After hit Life of orc is ' +unOrc.HP__c + ' Hit is ' +dmgOrc);
-              return unHuman.name;
-           }
+            integer dmgOrc = getHit((integer)unHuman.dmgMin__c,(integer)unHuman.dmgMax__c);
+            integer lostLifeOrc = reduceLife((integer)unOrc.HP__c,dmgOrc);
+            unOrc.HP__c=lostLifeOrc;
+            update unOrc;
+            if (lostLifeOrc<=0)
+            {
+               unOrc.HP__c = 0;
+               update unOrc;   
+               System.debug('After hit Life of orc is ' +unOrc.HP__c + ' Hit is ' +dmgOrc);
+               return unHuman.name;
+            }
           }
        }            
        System.debug('Life of human is ' +unHuman.HP__c);
