@@ -13,6 +13,18 @@ public class Unit
     private integer vMinDmg;
     /** maximal damaging for the enemy's */
     private integer vMaxDmg;
+      
+    /** 
+    * The constructor creates warrior in the game
+    * Default
+    */
+    public Unit()
+    {
+        this.vName   = '';
+        this.vHP     = 0;
+        this.vMinDmg = 0;
+        this.vMaxDmg = 0;
+    }  
        
     /** 
     * The constructor creates warrior in the game
@@ -44,7 +56,7 @@ public class Unit
       return this.vHP;
     }
     
-    public void sethHP(integer vHP)
+    public void setHP(integer vHP)
     {
       this.vHP= vHP;
     }
