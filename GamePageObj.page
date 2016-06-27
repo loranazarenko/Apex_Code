@@ -22,32 +22,32 @@
        <apex:outputtext value="Warrior 2 :" />
        
        <apex:outputtext value="" />
-       <apex:outputtext value="{!inputName1}"/>
-       <apex:outputtext value="{!inputName2}"/>
+       <apex:outputtext value="{!warrior1.Name}"/>
+       <apex:outputtext value="{!warrior2.Name}"/>
         
        <apex:outputtext value="Healing points" />
-       <apex:outputtext value="{!inputHP1}" id="fieldHP1" />
-       <apex:outputtext value="{!inputHP2}" id="fieldHP2" />
+       <apex:outputtext value="{!warrior1.HP__c}" />
+       <apex:outputtext value="{!warrior2.HP__c}" />
        
        <apex:outputtext value="Minimum damage" />
-       <apex:outputtext value="{!inputDmgMin1}"/>
-       <apex:outputtext value="{!inputDmgMin2}"/>
+       <apex:outputtext value="{!warrior1.dmgMin__c}"/>
+       <apex:outputtext value="{!warrior2.dmgMin__c}"/>
        
        <apex:outputtext value="Maximum damage" />
-       <apex:outputtext value="{!inputDmgMax1}"/>
-       <apex:outputtext value="{!inputDmgMax2}"/>
+       <apex:outputtext value="{!warrior1.dmgMax__c}"/>
+       <apex:outputtext value="{!warrior2.dmgMax__c}"/>
        </apex:panelGrid>
      </apex:panelGrid>
      
-     <apex:commandButton action="{!ownStart}" value="Start!"  reRender="RefreshField" />
+     <apex:commandButton action="{!ownStart}" value="Start!"  reRender="RefreshField,out" />
      </apex:pageBlock>
      <br/><br/>
      <apex:pageBlock >
-     <apex:commandButton action="{!ownEditWar1}" value="Edit first warrior" />
+     <apex:commandButton action="{!ownEditWar1Page}" value="Edit first warrior on custom page" />
      <br/><br/>
-     <apex:commandButton action="{!ownEditWar2}" value="Edit second warrior" />
+     <apex:commandButton action="{!ownEditWar2Page}" value="Edit second warrior on custom page" />
      <br/><br/>
-     <apex:commandButton action="{!ownSave}" value="New warrior in the Tab!" />
+     <apex:commandButton action="{!ownCreate}" value="New warrior in the Page!" />
      </apex:pageBlock>
     <apex:pageBlock id="RefreshField">
        Победитель :<apex:inputtext value="{!Winner}"/>
@@ -63,13 +63,14 @@
          </apex:column>  
          <apex:column value="{!qwer.id}"/>  
         </apex:pageBlockTable>   
-        <apex:pageblockTable value="{!unitsSOSL}" var="search">  
+        <apex:pageblockTable value="{!unitsSOSL}" var="searRes">  
          <apex:column headerValue="Name from SOSL" title="SOSL" >  
-          <apex:outputlink value="https://ap1.salesforce.com/{!search.id}">{!search.Name}</apex:outputlink>  
+          <apex:outputlink value="https://ap1.salesforce.com/{!searRes.id}">{!searRes.Name}</apex:outputlink>  
          </apex:column>  
-         <apex:column value="{!search.id}"/>  
+         <apex:column value="{!searRes.id}"/>  
         </apex:pageBlockTable>    
      </apex:pageBlock>   
     </apex:pageBlock>
  </apex:form>
 </apex:page>
+                                        
