@@ -1,0 +1,18 @@
+<apex:page controller="GameCallObj" >
+  <apex:form >
+    <apex:pageBlock title="Create New Warrior!">
+      <apex:pageBlockSection title="Create New Warrior!">
+        <apex:inputField value="{!warriorNew.Name}"/>
+        <apex:inputField value="{!warriorNew.HP__c}"/>
+        <apex:inputField value="{!warriorNew.dmgMin__c}"/>
+        <apex:inputField value="{!warriorNew.dmgMax__c}"/>
+        <apex:inputField value="{!warriorNew.isActive__c}"/>
+        <apex:inputField value="{!warriorNew.TypeAttack__c}"/>
+        <apex:inputField value="{!warriorNew.TypeBlock__c}"/>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+    <apex:commandButton action="{!ownSaveWarNewPage}" value="Сохранить!"/>
+    <apex:commandButton action="{!ownCancel}" value="Отмена!"/>
+  </apex:form>
+
+</apex:page>
