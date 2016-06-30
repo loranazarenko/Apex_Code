@@ -28,7 +28,7 @@ trigger WonGames on Unit__c (before update) {
             /** Sort of union the lists of changed and unchanged warriors by the number of wins */ 
             BubbleSort(allUnitsList);
          
-           for (Integer i = 0; i < (allUnitsList.size()-1); i++){
+           for (Integer i = 0; i < allUnitsList.size(); i++){
              allUnitsList[i].Place_in_the_rating__c = i;
            }
            
