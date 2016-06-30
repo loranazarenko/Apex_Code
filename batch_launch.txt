@@ -1,5 +1,5 @@
 unitHPBatch newBatch = new unitHPBatch();
-String cronID = System.scheduleBatch(newBatch, 'job example', 1);
+String cronID = System.scheduleBatch(newBatch, 'job example', 1440);
 
 CronTrigger ct = [SELECT Id, TimesTriggered, NextFireTime
                 FROM CronTrigger WHERE Id = :cronID];
