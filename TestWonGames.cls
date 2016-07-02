@@ -1,6 +1,6 @@
 /**
 @author LNazarenko
-This class tests the trriger WonGames
+This class tests the trigger WonGames
 */
 
 @isTest(SeeAllData=false)
