@@ -32,7 +32,6 @@ private class TestWonGames {
    } 
    /** Test Start game tests of the behave */
     static testMethod void testSortWinners() {
-       static testMethod void testSortWinners() {
        /** Use the PageReference Apex class to instantiate a page */
        PageReference pageRef = Page.GameObjPeople;
        Test.setCurrentPage(pageRef);
@@ -49,12 +48,8 @@ private class TestWonGames {
        Test.startTest();
        /** Test Start game */
       
-    //   warriorHum.WonGames__c = 3;
-    //   update warriorHum;
-    //   warriorOrc.WonGames__c = 2;
-    //   update warriorOrc;
-    //   warriorOrc.WonGames__c = 1;
-    //   update warriorSmb;
+       controller.ownStart();
+       controller.ownStart();
        controller.ownStart();
        controller.ownStart();
        controller.ownStart();
@@ -80,11 +75,7 @@ private class TestWonGames {
        warriorSmb = [select name,id,dmgMin__c,HP__c,dmgMax__c,isActive__c,
                              WonGames__c,Place_in_the_rating__c,WinRate__c from unit__c][2];    
    
-    //   System.assertEquals(warriorHum.Place_in_the_rating__c, 2);
-    //   System.assertEquals(warriorOrc.Place_in_the_rating__c, 1);
-    //  System.assertEquals(warriorSmb.Place_in_the_rating__c, 0);
-    
-        System.assertEquals(warriorSmb.Place_in_the_rating__c, 1);
+       System.assertEquals(warriorSmb.Place_in_the_rating__c, 1);
         
    }   
         
