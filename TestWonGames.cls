@@ -30,23 +30,47 @@ private class TestWonGames {
    
        System.assertEquals(warriorSmb.Place_in_the_rating__c, 2);
    } 
-   /** Test Start game with high advantages for warrior 1 */
+   /** Test Start game tests of the behave */
     static testMethod void testSortWinners() {
+       static testMethod void testSortWinners() {
+       /** Use the PageReference Apex class to instantiate a page */
+       PageReference pageRef = Page.GameObjPeople;
+       Test.setCurrentPage(pageRef);
+       /** Instantiate and construct the controller class. */  
+       GameCallObjPeople controller = new GameCallObjPeople();
        Unit__c warriorHum = [select name,id,dmgMin__c,HP__c,dmgMax__c,isActive__c,
                              WonGames__c,Place_in_the_rating__c,WinRate__c from unit__c][0]; 
        Unit__c warriorOrc = [select name,id,dmgMin__c,HP__c,dmgMax__c,isActive__c,
                              WonGames__c,Place_in_the_rating__c,WinRate__c from unit__c][1]; 
        Unit__c warriorSmb = [select name,id,dmgMin__c,HP__c,dmgMax__c,isActive__c,
-                             WonGames__c,Place_in_the_rating__c,WinRate__c from unit__c][2];                       
+                             WonGames__c,Place_in_the_rating__c,WinRate__c from unit__c][2]; 
+       controller.setWarrior1(warriorSmb);
+       controller.setWarrior2(warriorOrc);                       
        Test.startTest();
        /** Test Start game */
       
-       warriorHum.WonGames__c = 3;
-       update warriorHum;
-       warriorOrc.WonGames__c = 2;
-       update warriorOrc;
-       warriorOrc.WonGames__c = 1;
-       update warriorSmb;
+    //   warriorHum.WonGames__c = 3;
+    //   update warriorHum;
+    //   warriorOrc.WonGames__c = 2;
+    //   update warriorOrc;
+    //   warriorOrc.WonGames__c = 1;
+    //   update warriorSmb;
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+      
        Test.stopTest();
        /** Verify that the success page displays */
        warriorHum = [select name,id,dmgMin__c,HP__c,dmgMax__c,isActive__c,
@@ -56,9 +80,11 @@ private class TestWonGames {
        warriorSmb = [select name,id,dmgMin__c,HP__c,dmgMax__c,isActive__c,
                              WonGames__c,Place_in_the_rating__c,WinRate__c from unit__c][2];    
    
-       System.assertEquals(warriorHum.Place_in_the_rating__c, 2);
-       System.assertEquals(warriorOrc.Place_in_the_rating__c, 1);
-       System.assertEquals(warriorSmb.Place_in_the_rating__c, 0);
+    //   System.assertEquals(warriorHum.Place_in_the_rating__c, 2);
+    //   System.assertEquals(warriorOrc.Place_in_the_rating__c, 1);
+    //  System.assertEquals(warriorSmb.Place_in_the_rating__c, 0);
+    
+        System.assertEquals(warriorSmb.Place_in_the_rating__c, 1);
         
    }   
         
