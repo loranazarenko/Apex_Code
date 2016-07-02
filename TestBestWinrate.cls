@@ -1,6 +1,6 @@
 /**
 @author LNazarenko
-This class tests the trriger BestWinrate
+This class tests the trigger BestWinrate
 */
 
 @isTest(SeeAllData=false)
