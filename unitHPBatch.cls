@@ -12,7 +12,8 @@ global class unitHPBatch implements Database.Batchable<sObject>{
        List<Unit__c> updateUnitList = new List<Unit__c>();
        for(Unit__c item:(List<Unit__c>)scope)
        {
-         item.HP__c = item.HP__c + 10;        
+         item.HP__c = item.HP__c + 10;    
+         item.Stamina__c = true; 
          updateUnitList.add(item);  
        }
        system.debug(updateUnitList);
