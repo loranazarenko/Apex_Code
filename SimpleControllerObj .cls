@@ -9,10 +9,7 @@ public with sharing class SimpleControllerObj
    
    /** List of Objects of the Order's class */
    public List<Order__c> orders{get;set;}
-   
-   /** List of Objects of the Rate's class */
-   public List<Rate__c> rates{get;set;}
-   
+ 
    /** List of Objects of the WorkPeriod's class */
    public List<Work_Period__c> wps{get;set;}
   
