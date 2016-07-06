@@ -15,7 +15,7 @@ public with sharing class SimpleControllerObj
    */
    public List<Account> getCompany()
    {
-     companies = [select Id, Name from Account];   
+     companies = [select Id, Name from Account Order by Name ASC];   
      System.Debug(companies);
      return companies;     
    }
