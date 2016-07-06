@@ -23,7 +23,6 @@ public with sharing class SimpleControllerObj
    {
      getCompany();
      getOrder();
-     getRate();
      getWP(); 
    }
   
@@ -47,17 +46,7 @@ public with sharing class SimpleControllerObj
      System.Debug(orders); 
      return orders;      
    }
-   
-   /**
-   * Method creates Rate's instances
-   */
-   public List<Rate__c> getRate()
-   {
-     rates = [select Id, Name, Customer_Rate__c, Employer_Rate__c from Rate__c];    
-     System.Debug(rates);
-     return rates;      
-   }
-   
+ 
    /**
    * Method creates WorkPeriod's instances
    */
