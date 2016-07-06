@@ -6,9 +6,6 @@ public with sharing class SimpleControllerObj
 {
    /** List of Objects of the Account's class */
    public List<Account> companies{get;set;}
-   
-   /** List of Objects of the Order's class */
-   public List<Order__c> orders{get;set;}
  
    /** List of Objects of the WorkPeriod's class */
    public List<Work_Period__c> wps{get;set;}
