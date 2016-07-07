@@ -28,8 +28,8 @@ public with sharing class ReportClass
     public list<Wrapper> getAccounts()
     {
       accounts = new list<Wrapper>();
-      accs = new list<Account>();
-      accs = [Select Id,Name from Account];
+      accs     = new list<Account>();
+      accs     = [Select Id,Name from Account Order by Name ASC];
       for(Account accc : accs)
       {
         wrap          = new Wrapper();
