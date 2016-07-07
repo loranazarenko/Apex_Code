@@ -46,7 +46,7 @@ public with sharing class ReportClass
     public void processWrapps()
     {
       myResults = 'Next Wraps were selected: ';
-      for(Wrapper item:accounts)
+      for(Wrapper item : accounts)
       {
        if(item.checkbox)
        {
