@@ -45,8 +45,8 @@ public class SimpleController
    */
    public void createOrder()
    {
-     order1 = new Order('Order1',company1, '1');
-     order2 = new Order('Order2',company2, '2');
+     order1 = new Order('Order1', company1, '1');
+     order2 = new Order('Order2', company2, '2');
    }
    
    /**
@@ -54,8 +54,8 @@ public class SimpleController
    */
    public void createRate()
    {
-     rate1 = new Rate('Winter','1', 100, 200);
-     rate2 = new Rate('Summer','2', 200, 300);
+     rate1 = new Rate('Winter', '1', 100, 200);
+     rate2 = new Rate('Summer', '2', 200, 300);
    }
    
    /**
@@ -63,7 +63,7 @@ public class SimpleController
    */
    public void createWP()
    {
-     wp1 = new WorkPeriod('Winter','1', Date.today(), Date.today().addDays(10), order1, rate1);
-     wp2 = new WorkPeriod('Summer','2', Date.today().addDays(100), Date.today().addDays(200), order2, rate2);
+     wp1 = new WorkPeriod('Winter', '1', Date.today(), Date.today().addDays(10), order1, rate1);
+     wp2 = new WorkPeriod('Summer', '2', Date.today().addDays(100), Date.today().addDays(200), order2, rate2);
    }
 }
