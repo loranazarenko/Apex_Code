@@ -3,11 +3,11 @@
     <apex:form id="changePrivacyForm">
     <apex:commandButton value="Process" action="{!processWrapps}"/>
     <apex:pageBlock >
-    <apex:pageBlockTable value="{!accounts}"  var="o">
+    <apex:pageBlockTable value="{!accounts}"  var="acc">
       <apex:column headerValue="is Selected?">
-        <apex:inputCheckbox value="{!o.checkbox}"/>
+        <apex:inputCheckbox value="{!acc.checkbox}"/>
       </apex:column>
-      <apex:column headerValue="Name" value="{!o.acc.name}"/>
+      <apex:column headerValue="Name" value="{!acc.acc.name}"/>
     </apex:pageBlockTable>
     </apex:pageBlock>
     </apex:form>
