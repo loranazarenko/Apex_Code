@@ -6,25 +6,25 @@ public with sharing class ReportClass
 {
     /** List of the Accounts */
     public list<Account>accs{get; set;}
-	/** List of the wrapper's files */
+   /** List of the wrapper's files */
     public list<Wrapper> accounts{get; set;}
-	/** Wrapper's class object */ 
+   /** Wrapper's class object */ 
     Wrapper wrap;
-	/** Text that would return after press the button Process */ 
+   /** Text that would return after press the button Process */ 
     public String myResults{get; set;}
     
-	/**
-	* Constructor of the class ReportClass, it calls method getAccounts()
-	*/
+    /**
+    * Constructor of the class ReportClass, it calls method getAccounts()
+    */
     public ReportClass()
     {  
 	 getAccounts();
     }
     
-	/**
-	* Method getAccounts() wraps accounts through special class Wrapper with checkboxes 
-	* @return list of the wrapped accounts
-	*/
+    /**
+    * Method getAccounts() wraps accounts through special class Wrapper with checkboxes 
+    * @return list of the wrapped accounts
+    */
     public list<Wrapper> getAccounts()
     {
       accounts = new list<Wrapper>();
@@ -40,9 +40,9 @@ public with sharing class ReportClass
       return accounts;
     }
     
-	/**
-	* Method processWrapps() creates string with names of the checked accounts 
-	*/
+    /**
+    * Method processWrapps() creates string with names of the checked accounts 
+    */
     public void processWrapps()
     {
       myResults = 'Next Wraps were selected: ';
@@ -56,8 +56,8 @@ public with sharing class ReportClass
     }
     
     /** 
-	* Wrapper class - class that helps to add to the page checkboxes
-	*/
+    * Wrapper class - class that helps to add to the page checkboxes
+    */
     public class Wrapper
     {
       public boolean checkbox{get;set;}
