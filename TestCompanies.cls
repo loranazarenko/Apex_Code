@@ -12,7 +12,7 @@ This class tests the Companies
        PageReference pageRef = Page.JobPageTab;
        Test.setCurrentPage(pageRef);
        /** Instantiate and construct the controller class. */  
-       SimpleControllerObj controller = new SimpleControllerObj();
+       JobControllerObj controller = new JobControllerObj();
        /** Get companies with work periods and set */
        Test.startTest();
        List <Account> cmp = controller.getCompany();
@@ -28,7 +28,7 @@ This class tests the Companies
        PageReference pageRef = Page.JobPageTab;
        Test.setCurrentPage(pageRef);
        /** Instantiate and construct the controller class. */  
-       SimpleControllerObj controller = new SimpleControllerObj();
+       JobControllerObj controller = new JobControllerObj();
        /** Get companies with work periods and set */
        Test.startTest();
        controller.getWP();
