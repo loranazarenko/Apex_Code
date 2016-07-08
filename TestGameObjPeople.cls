@@ -14,7 +14,7 @@ private class TestGameObjPeople {
         Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1]; 
         GameObjPeople gameOb = new GameObjPeople();             
         Test.startTest();
-        gameOb.StageFightHuman(warriorHum,warriorOrc,1);
+        gameOb.StageFightHuman(warriorHum, warriorOrc);
         Test.stopTest();
         System.assertEquals(warriorHum.HP__c,0);
     }    
@@ -26,7 +26,7 @@ private class TestGameObjPeople {
         Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1]; 
         GameObjPeople gameOb = new GameObjPeople();             
         Test.startTest();
-        gameOb.StageFightHuman(warriorOrc,warriorHum,1);
+        gameOb.StageFightHuman(warriorOrc, warriorHum);
         Test.stopTest();
         System.assertEquals(warriorHum.HP__c,0);
     }   
@@ -38,7 +38,7 @@ private class TestGameObjPeople {
         Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1]; 
         GameObjPeople gameOb = new GameObjPeople();             
         Test.startTest();
-        gameOb.StageFightOrc(warriorHum,warriorOrc,1);
+        gameOb.StageFightOrc(warriorHum, warriorOrc);
         Test.stopTest();
         System.assertEquals(warriorHum.HP__c,0);
     }   
@@ -50,7 +50,7 @@ private class TestGameObjPeople {
         Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1];
         GameObjPeople gameOb = new GameObjPeople();             
         Test.startTest();
-        gameOb.StageFightOrc(warriorOrc,warriorHum,1);
+        gameOb.StageFightOrc(warriorOrc, warriorHum);
         Test.stopTest();
         System.assertEquals(warriorHum.HP__c,0);
     } 
