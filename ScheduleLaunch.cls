@@ -1,10 +1,9 @@
 /**
 * Author  LNazarenko
-* this code launch batch scheduledUnitHPBatch one time a day
+* this code controls a launch batch ScheduledUnitHPBatch one time a day
 */
 
-unitHPBatch newBatch = new unitHPBatch();
-scheduledUnitHPBatch newShed = new scheduledUnitHPBatch();
+ScheduledUnitHPBatch newShed = new ScheduledUnitHPBatch();
 String timeGo = '59 59 23 * * ?';
 System.schedule('Increase life', timeGo, newShed);
 
