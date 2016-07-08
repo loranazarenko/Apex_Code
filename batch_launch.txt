@@ -1,3 +1,8 @@
+/**
+* Author  LNazarenko
+* this code launch batch unitHPBatch
+*/
+
 unitHPBatch newBatch = new unitHPBatch();
 String cronID = System.scheduleBatch(newBatch, 'job example', 1440);
 
