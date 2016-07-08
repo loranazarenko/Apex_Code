@@ -1,6 +1,6 @@
 /**
 @author LNazarenko
-* This test UnitHPBatch check to add warriors 10 points to life and to set Stamina = true
+* This test checks class UnitHPBatch  to add warriors 10 points to life and to set Stamina = true
 */
 
 @isTest(SeeAllData=false)
