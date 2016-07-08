@@ -32,7 +32,7 @@ private class TestGameCallObjPeople {
        PageReference pageRef = Page.GameObjPeople;
        Test.setCurrentPage(pageRef);
        GameCallObjPeople controller = new GameCallObjPeople();
-       Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c From Unit__c][4]; 
+        Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c From Unit__c][4]; 
        Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c From Unit__c][5]; 
        controller.setWarrior1(warriorHum);
        controller.setWarrior2(warriorOrc); 
@@ -311,7 +311,6 @@ private class TestGameCallObjPeople {
        Test.startTest();
        controller.firstKik = false;
        controller.ownStart();
-     //  controller.blk = 2;
        controller.ownStart();
        Test.stopTest();
        String Winner = controller.Winner;
@@ -326,7 +325,7 @@ private class TestGameCallObjPeople {
        Test.startTest();
        String option = controller.getOptionsBlock()[0].getValue();
        Test.stopTest();
-       System.assertEquals(option, 'Head');
+       System.assertEquals(option, String.valueOf(1));
     }
     
      /** Testing of assignmentAttack  */
@@ -390,8 +389,8 @@ private class TestGameCallObjPeople {
        warriorHum.dmgMin__c    = 5;
        warriorHum.dmgMax__c    = 10;
        warriorHum.isActive__c  = true;
-       warriorHum.TypeAttack__c= 'Head';
-       warriorHum.TypeBlock__c = 'Head';
+       warriorHum.TypeAttack__c= '1';
+       warriorHum.TypeBlock__c = '1';
        insert warriorHum;
        
        Unit__c warriorOrc = new Unit__c();
@@ -400,8 +399,8 @@ private class TestGameCallObjPeople {
        warriorOrc.dmgMin__c    = 19;
        warriorOrc.dmgMax__c    = 30;
        warriorOrc.isActive__c  = false;
-       warriorOrc.TypeAttack__c= 'Сhest';
-       warriorOrc.TypeBlock__c = 'Сhest';
+       warriorOrc.TypeAttack__c= '2';
+       warriorOrc.TypeBlock__c = '2';
        insert warriorOrc;
        
        Unit__c warriorZeroHum = new Unit__c();
@@ -410,8 +409,8 @@ private class TestGameCallObjPeople {
        warriorZeroHum.dmgMin__c    = 1;
        warriorZeroHum.dmgMax__c    = 2;
        warriorZeroHum.isActive__c  = true;
-       warriorZeroHum.TypeAttack__c='Stomach';
-       warriorZeroHum.TypeBlock__c ='Stomach';
+       warriorZeroHum.TypeAttack__c= '3';
+       warriorZeroHum.TypeBlock__c = '3';
        insert warriorZeroHum;
        
        Unit__c warriorZeroOrc = new Unit__c();
@@ -420,8 +419,8 @@ private class TestGameCallObjPeople {
        warriorZeroOrc.dmgMin__c   = 1;
        warriorZeroOrc.dmgMax__c   = 2;
        warriorZeroOrc.isActive__c = true;
-       warriorZeroOrc.TypeAttack__c='Feet';
-       warriorZeroOrc.TypeBlock__c ='Feet';
+       warriorZeroOrc.TypeAttack__c= '4';
+       warriorZeroOrc.TypeBlock__c = '4';
        insert warriorZeroOrc;
        
        Unit__c warriorHumF        = new Unit__c();
