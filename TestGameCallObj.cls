@@ -14,8 +14,8 @@ private class TestGameCallObj {
        /** Instantiate and construct the controller class. */  
        GameCallObj controller = new GameCallObj();
        /** Get warriors and set */
-       Unit__c warriorHum = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][0]; 
-       Unit__c warriorOrc = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][1]; 
+       Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][0]; 
+       Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1]; 
        controller.setWarrior1(warriorHum);
        controller.setWarrior2(warriorOrc); 
        Test.startTest();
@@ -32,8 +32,8 @@ private class TestGameCallObj {
        PageReference pageRef = Page.GameObj;
        Test.setCurrentPage(pageRef);
        GameCallObj controller = new GameCallObj();
-       Unit__c warriorHum = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][0]; 
-       Unit__c warriorOrc = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][1]; 
+       Unit__c warriorHum = [Select Name, id, dmgMin__c, HP__c, dmgMax__c From Unit__c][0]; 
+       Unit__c warriorOrc = [Select Name, id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1]; 
        controller.setWarrior1(warriorOrc);
        controller.setWarrior2(warriorHum); 
        Test.startTest();
@@ -49,7 +49,7 @@ private class TestGameCallObj {
        Test.setCurrentPage(pageRef);
        Test.startTest();
        GameCallObj controller = new GameCallObj();
-       Unit__c warriorHum = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][0]; 
+       Unit__c warriorHum = [Select Name, id, dmgMin__c, HP__c, dmgMax__c From Unit__c][0]; 
        controller.setWarrior1(warriorHum);
        /** Test page Edit - get url and compare with the etalon */
        String nextPage = controller.ownEditWar1Page().getUrl();
@@ -64,7 +64,7 @@ private class TestGameCallObj {
        Test.setCurrentPage(pageRef);
        Test.startTest();
        GameCallObj controller = new GameCallObj();
-       Unit__c warriorOrc = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][1]; 
+       Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1]; 
        controller.setWarrior2(warriorOrc); 
        /** Test page Edit - get url and compare with the etalon */
        String nextPage = controller.ownEditWar2Page().getUrl();
@@ -77,7 +77,7 @@ private class TestGameCallObj {
        PageReference pageRef = Page.GameObj;
        Test.setCurrentPage(pageRef);
        GameCallObj controller = new GameCallObj();
-       Unit__c warriorHum = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][0]; 
+       Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][0]; 
        controller.setWarrior1(warriorHum);
        string searchstring = 'Hard kick'; 
        controller.searchstring = searchstring; 
@@ -89,7 +89,7 @@ private class TestGameCallObj {
     
     /** Testing the search through SOSL */
     static testMethod void testConGameCallSearchSOSL() {
-       Unit__c warriorHum = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][1]; 
+       Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1]; 
        Id [] fixedSearchResults= new Id[1]; 
        fixedSearchResults[0] = warriorHum.Id; 
        Test.setFixedSearchResults(fixedSearchResults); 
@@ -107,7 +107,7 @@ private class TestGameCallObj {
    
    /** Testing the search result */
    static testMethod void testConGameCallSearchSOSLSOQL() {
-       Unit__c warriorHum = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][1];       
+       Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1];       
        Id [] fixedSearchResults= new Id[1]; 
        fixedSearchResults[0] = warriorHum.Id; 
        Test.setFixedSearchResults(fixedSearchResults); 
@@ -126,7 +126,7 @@ private class TestGameCallObj {
     
     /** Testing the clearing of the search result */
     static testMethod void testConGameCallClearSearchSOSLSOQL() {
-       Unit__c warriorHum = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][1];       
+       Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1];       
        Id [] fixedSearchResults= new Id[1]; 
        fixedSearchResults[0] = warriorHum.Id; 
        Test.setFixedSearchResults(fixedSearchResults); 
@@ -166,8 +166,8 @@ private class TestGameCallObj {
        Test.setCurrentPage(pageRef);
        Test.startTest();
        GameCallObj controller = new GameCallObj();
-       Unit__c warriorHum = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][0]; 
-       Unit__c warriorOrc = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][1]; 
+       Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][0]; 
+       Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1]; 
        controller.setWarrior1(warriorHum); 
        controller.setWarrior2(warriorOrc); 
        Unit__c warUn = controller.getWarrior1(); 
@@ -250,8 +250,8 @@ private class TestGameCallObj {
        PageReference pageRef = Page.GameObj;
        Test.setCurrentPage(pageRef);
        GameCallObj controller = new GameCallObj();
-       Unit__c warriorZeroHum = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][2]; 
-       Unit__c warriorZeroOrc = [select name,id,dmgMin__c,HP__c,dmgMax__c from unit__c][3]; 
+       Unit__c warriorZeroHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][2]; 
+       Unit__c warriorZeroOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][3]; 
        controller.setWarrior1(warriorZeroHum);
        controller.setWarrior2(warriorZeroOrc); 
        Test.startTest();
