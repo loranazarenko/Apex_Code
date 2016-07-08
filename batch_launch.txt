@@ -1,6 +1,6 @@
 /**
 * Author  LNazarenko
-* this code launch batch unitHPBatch one time a day
+* this code controls a launch batch unitHPBatch one time a day
 */
 
 unitHPBatch newBatch = new unitHPBatch();
