@@ -1,6 +1,6 @@
 /**
 @author LNazarenko
-* This batch unitHPBatch adds 5 warriors 10 points to life
+* This batch unitHPBatch adds warriors 10 points to life and sets Stamina = true
 */
 
 global class unitHPBatch implements Database.Batchable<sObject>{
