@@ -1,6 +1,6 @@
 /**
 * Author  LNazarenko
-* this code launch batch scheduledUnitHPBatch
+* this code launch batch scheduledUnitHPBatch one time a day
 */
 
 unitHPBatch newBatch = new unitHPBatch();
