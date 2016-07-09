@@ -1,5 +1,4 @@
 <apex:page controller="ReportClass">
-
      <apex:pageBlock title="Result" >
         <apex:repeat value="{!myResults}" var="res" >
           <apex:outputPanel rendered="{!isResult}">
@@ -12,11 +11,11 @@
     <apex:commandButton value="Process" action="{!processWrapps}"/>
     <apex:pageBlock >
     <apex:pageBlockTable value="{!accounts}"  var="wrap">
-      <apex:column headerValue="is Selected?">
-        <apex:inputCheckbox value="{!wrap.checkbox}"/>
-      </apex:column>
-      <apex:column headerValue="Name" value="{!wrap.acc.name}"/>
+          <apex:column headerValue="is Selected?">
+             <apex:inputCheckbox value="{!wrap.checkbox}"/>
+          </apex:column>
+          <apex:column headerValue="Name" value="{!wrap.acc.name}"/>
     </apex:pageBlockTable>
     </apex:pageBlock>
     </apex:form>
- </apex:page>
+</apex:page>
