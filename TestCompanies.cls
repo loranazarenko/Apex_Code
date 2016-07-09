@@ -18,7 +18,7 @@ This class tests the Companies
        List <Account> cmp = controller.getCompany();
        System.Debug(cmp);
        Test.stopTest();
-       List <Account> companies = [select Id, Name from Account Order by Name ASC];   
+       List <Account> companies = List<Account>([select Id, Name from Account Order by Name ASC]);   
        System.assertEquals(companies[0].Name, 'Cisco');
     }   
     
@@ -33,10 +33,10 @@ This class tests the Companies
        Test.startTest();
        controller.getWP();
        Test.stopTest();
-       List <Account> companies = [select Id, Name from Account Order by Name ASC];   
-       List <Work_Period__c> wps = [Select Id, Name, Order__r.Id, Order__r.Account__r.Name, 
+       List <Account> companies = List<Account>([select Id, Name from Account Order by Name ASC]);   
+       List <Work_Period__c> wps = List<Work_Period__c>([Select Id, Name, Order__r.Id, Order__r.Account__r.Name, 
                                    Rate__r.Id, Rate__r.Customer_Rate__c, Rate__r.Employer_Rate__c 
-                                   From Work_Period__c Where Order__r.Account__r.Id IN : companies Order by Name ASC];  
+                                   From Work_Period__c Where Order__r.Account__r.Id IN : companies Order by Name ASC]);  
        System.assertEquals(wps[0].Name, 'Period Summer');
      } 
     
