@@ -150,9 +150,9 @@ public with sharing class GameCallObjPeople
      public List<Unit__c> getWarriors()
      {
        Datetime lastDay = Datetime.Now().addDays(-1);
-       warriorsHum = [select Id, Name, HP__c, dmgMin__c , dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c,WonGames__c,Place_in_the_rating__c  
+       warriorsHum = new List<Unit__c>([select Id, Name, HP__c, dmgMin__c , dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c,WonGames__c,Place_in_the_rating__c  
                      From Unit__c 
-                     Where (HP__c>0 Or (LastModifiedDate<:lastDay and HP__c<=0))];
+                     Where (HP__c>0 Or (LastModifiedDate<:lastDay and HP__c<=0))]);
        return warriorsHum;
      }
      
@@ -174,10 +174,10 @@ public with sharing class GameCallObjPeople
           pickListOr = new list<SelectOption>();
           
           Datetime lastDay = Datetime.Now().addDays(-1);
-          warriorsOrc = [select Id, Name, HP__c, dmgMin__c , dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c,WonGames__c,Place_in_the_rating__c   
+          warriorsOrc = new List<Unit__c>([select Id, Name, HP__c, dmgMin__c , dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c,WonGames__c,Place_in_the_rating__c   
                         From Unit__c 
                         Where (name!=:selectedWarHum And 
-                        (HP__c>0 Or (LastModifiedDate<:lastDay and HP__c<=0)))];
+                        (HP__c>0 Or (LastModifiedDate<:lastDay and HP__c<=0)))]);
           System.debug(warriorsOrc);              
           SelectOption firstOptionOr = new SelectOption('', ' - Select your favorite fighter' + ' -');
           pickListOr.add(firstOptionOr);
