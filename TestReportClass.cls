@@ -37,7 +37,11 @@ This class tests the ReportClass
        System.Debug(cmp);
        Test.stopTest();
        controller.processWrapps();
-       System.assertEquals(controller.myResults , 'Next Wraps were selected: Cisco, ');
+       List <String> compare = new List<String>{'Cisco'};
+       Boolean result;
+       System.Debug(controller.myResults);
+       result = controller.myResults.containsAll(compare);
+       System.assertEquals(result, true);
     }      
         
     /** Data for tests */
