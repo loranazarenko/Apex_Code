@@ -116,8 +116,8 @@ public class GameCallObj
      public List<Unit__c> getWarriors()
      {
        Datetime lastDay = Datetime.Now().addDays(-1);
-       warriors1 = [select Id, Name,HP__c,dmgMin__c,dmgMax__c,isActive__c,TypeAttack__c,TypeBlock__c
-                   from Unit__c Where (HP__c>0 Or (LastModifiedDate<:lastDay and HP__c<=0))];
+       warriors1 = new List<Unit__c>([select Id, Name,HP__c,dmgMin__c,dmgMax__c,isActive__c,TypeAttack__c,TypeBlock__c
+                   from Unit__c Where (HP__c>0 Or (LastModifiedDate<:lastDay and HP__c<=0))]);
        return warriors1;
      }
      
@@ -137,8 +137,8 @@ public class GameCallObj
             pickList2 = new list<SelectOption>();
           
             Datetime lastDay = Datetime.Now().addDays(-1);
-            warriors2 = [select Id, Name,HP__c,dmgMin__c,dmgMax__c,isActive__c,TypeAttack__c,TypeBlock__c from Unit__c 
-                         Where (name!=:selectedWar1 And (HP__c>0 Or (LastModifiedDate<:lastDay and HP__c<=0)))];
+            warriors2 = new List<Unit__c>([select Id, Name,HP__c,dmgMin__c,dmgMax__c,isActive__c,TypeAttack__c,TypeBlock__c from Unit__c 
+                         Where (name!=:selectedWar1 And (HP__c>0 Or (LastModifiedDate<:lastDay and HP__c<=0)))]);
             SelectOption firstOption2 = new SelectOption('', ' - Select your favorite fighter' + ' -');
             pickList2.add(firstOption2);
             for (Unit__c war : warriors2) 
