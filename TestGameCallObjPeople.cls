@@ -262,6 +262,7 @@ private class TestGameCallObjPeople {
        PageReference pageRef = Page.GameObjPeople;
        Test.setCurrentPage(pageRef);
        GameCallObjPeople controller = new GameCallObjPeople();
+       System.assertEquals(controller.Winner, '');
        Unit__c warriorZeroHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c,
                                 isActive__c, TypeAttack__c, TypeBlock__c From Unit__c])[2]; 
        Unit__c warriorZeroOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c,
@@ -285,6 +286,43 @@ private class TestGameCallObjPeople {
        Test.stopTest();
        String Winner = controller.Winner;
        System.assertEquals(Winner, 'Fill, please, all fields.');
+    }
+    
+    /** Testing case when both warrior's variables WonGames__c are null */
+    static testMethod void testWonGamesNull() {
+       PageReference pageRef = Page.GameObjPeople;
+       Test.setCurrentPage(pageRef);
+       GameCallObjPeople controller = new GameCallObjPeople();
+        Unit__c warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
+                            isActive__c, TypeAttack__c, TypeBlock__c From Unit__c])[0]; 
+       Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
+                            isActive__c, TypeAttack__c, TypeBlock__c From Unit__c])[1]; 
+       controller.setWarrior1(warriorHum);
+       controller.setWarrior2(warriorOrc); 
+       Test.startTest();
+       controller.ownStart();
+       controller.ownStart();
+       Test.stopTest();
+       System.assertEquals(warriorHum.WonGames__c, 1);
+    }
+    
+    /** Testing case when both warrior's variables WonGames__c are not null */
+    static testMethod void testWonGamesNotNull() {
+       PageReference pageRef = Page.GameObjPeople;
+       Test.setCurrentPage(pageRef);
+       GameCallObjPeople controller = new GameCallObjPeople();
+        Unit__c warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
+                            isActive__c, TypeAttack__c, TypeBlock__c From Unit__c])[4]; 
+       Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
+                            isActive__c, TypeAttack__c, TypeBlock__c From Unit__c])[5]; 
+       controller.setWarrior1(warriorHum);
+       controller.setWarrior2(warriorOrc); 
+       Test.startTest();
+       controller.ownStart();
+       controller.ownStart();
+       Test.stopTest();
+       System.assertEquals(warriorHum.WonGames__c, 2);
+       System.assertEquals(warriorOrc.WonGames__c, 1);
     }
     
     /** Testing of warrior with HP == 0 and other HP>0 and vice versa */
@@ -436,6 +474,7 @@ private class TestGameCallObjPeople {
        warriorHum.isActive__c  = true;
        warriorHum.TypeAttack__c= '1';
        warriorHum.TypeBlock__c = '1';
+       warriorHum.WonGames__c  = null;
        insert warriorHum;
        
        Unit__c warriorOrc = new Unit__c();
@@ -446,6 +485,7 @@ private class TestGameCallObjPeople {
        warriorOrc.isActive__c  = false;
        warriorOrc.TypeAttack__c= '2';
        warriorOrc.TypeBlock__c = '2';
+       warriorOrc.WonGames__c  = null;
        insert warriorOrc;
        
        Unit__c warriorZeroHum = new Unit__c();
@@ -474,6 +514,7 @@ private class TestGameCallObjPeople {
        warriorHumF.dmgMin__c      = 1;
        warriorHumF.dmgMax__c      = 2;
        warriorHumF.isActive__c    = false;
+       warriorHumF.WonGames__c     = 1;
        insert warriorHumF;
        
        Unit__c warriorOrcF = new Unit__c();
@@ -482,6 +523,7 @@ private class TestGameCallObjPeople {
        warriorOrcF.dmgMin__c      = 19;
        warriorOrcF.dmgMax__c      = 30;
        warriorOrcF.isActive__c    = true;
+       warriorOrcF.WonGames__c     = 1;
        insert warriorOrcF;
        
        Unit__c warriorOrcFMin = new Unit__c();
