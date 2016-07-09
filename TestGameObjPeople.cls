@@ -55,6 +55,25 @@ private class TestGameObjPeople {
         System.assertEquals(warriorHum.HP__c,0);
     } 
     
+    /**  Test random value */
+    @isTest static void TestRandType() 
+    {
+        Set<integer> someValues = new Set<integer>{1,2,3,4};
+        List<integer> otherValues = new List<integer>();
+        GameObjPeople gameOb = new GameObjPeople();             
+        Test.startTest();
+        for(integer i =0; i<1000;i++)
+        {
+           integer val = gameOb.randType();
+           if(!someValues.contains(val))
+           {
+             otherValues.add(val);  
+           }
+        }
+        Test.stopTest();
+        System.assertEquals(otherValues.size(),0);
+    } 
+    
     /** Data for tests */
     @testSetup
     static void allTheDataForThisTestClass() 
