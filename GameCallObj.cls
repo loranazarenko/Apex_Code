@@ -3,7 +3,7 @@
 This class defines the fields and methods of the start game and visual page
 */
 
-public class GameCallObj
+public with sharing class GameCallObj
 {
     /** Winner - field that return name of the winners */
     public String  Winner {get;set;}
