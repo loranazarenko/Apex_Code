@@ -14,8 +14,8 @@ private class TestGameCallObj {
        /** Instantiate and construct the controller class. */  
        GameCallObj controller = new GameCallObj();
        /** Get warriors and set */
-       Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][0]; 
-       Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1]; 
+       Unit__c warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[0]; 
+       Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[1]; 
        controller.setWarrior1(warriorHum);
        controller.setWarrior2(warriorOrc); 
        Test.startTest();
