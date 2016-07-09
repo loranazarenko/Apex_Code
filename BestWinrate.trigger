@@ -11,7 +11,14 @@ trigger BestWinrate on Unit__c (before update) {
          for(Unit__c newWins : Trigger.new){
            System.Debug(newWins);
            System.Debug(Trigger.oldMap.get(newWins.Id).WonGames__c);
-           sumUpdate = sumUpdate + (Integer)(Math.floor(newWins.WonGames__c));
+           if(newWins.WonGames__c!=null)
+           { 
+             sumUpdate = sumUpdate + (Integer)(Math.floor(newWins.WonGames__c));
+           }
+           else
+           {
+             sumUpdate = sumUpdate + 0;
+           }
            
             /** check for changes */
            if(newWins.WonGames__c!=Trigger.oldMap.get(newWins.Id).WonGames__c)
@@ -39,7 +46,14 @@ trigger BestWinrate on Unit__c (before update) {
             for(Unit__c itemUnit : allUnitsList)
             {
               /** the calculation of a percentage of the winnings */
-              itemUnit.WinRate__c = (Integer)(Math.floor((itemUnit.WonGames__c*100)/sumIn));
+              if(sumIn!=0&&sumIn!=null&&itemUnit.WonGames__c!=null)
+              {
+                itemUnit.WinRate__c = (Integer)(Math.floor((itemUnit.WonGames__c*100)/sumIn));
+              }
+              else
+              {
+                itemUnit.WinRate__c = 0;
+              }
             }
               
             if (unitList<>null)
