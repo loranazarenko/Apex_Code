@@ -1,13 +1,21 @@
 <apex:page controller="ReportClass">
-    {!myResults}
+
+     <apex:pageBlock title="Result" >
+        <apex:repeat value="{!myResults}" var="res" >
+          <apex:outputPanel rendered="{!isResult}">
+             <apex:outputText value="{!res}" /><br/>
+          </apex:outputPanel>   
+        </apex:repeat>
+     </apex:pageBlock>
+      
     <apex:form id="changePrivacyForm">
     <apex:commandButton value="Process" action="{!processWrapps}"/>
     <apex:pageBlock >
-    <apex:pageBlockTable value="{!accounts}"  var="acct">
+    <apex:pageBlockTable value="{!accounts}"  var="wrap">
       <apex:column headerValue="is Selected?">
-        <apex:inputCheckbox value="{!acct.checkbox}"/>
+        <apex:inputCheckbox value="{!wrap.checkbox}"/>
       </apex:column>
-      <apex:column headerValue="Name" value="{!acct.acc.name}"/>
+      <apex:column headerValue="Name" value="{!wrap.acc.name}"/>
     </apex:pageBlockTable>
     </apex:pageBlock>
     </apex:form>
