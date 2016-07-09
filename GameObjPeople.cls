@@ -27,16 +27,6 @@ public with sharing class GameObjPeople
        return (life - dmg);
     } 
     
-     /** 
-    * Return the reendom integer number in the range 
-    * @return ineger value of the the millisecond component
-    */ 
-    public integer randType()
-    {
-     System.debug((integer)(Math.floor(Math.random() * 4)+1));
-     return (integer)(Math.floor(Math.random() * 4)+1);
-    }   
-   
     /** 
     * The method creates next stage of the game for warrior 1  
     * @param unHuman passes the value of the warrior 1
