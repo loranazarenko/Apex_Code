@@ -2,7 +2,7 @@
 *@author LNazarenko
 * This class - custom Controller defines instances for output on the visual page
 */
-public class CompanyController
+public with sharing class CompanyController
 {
    /** Objects of the Company's class */
    public Company company1{get;set;}
