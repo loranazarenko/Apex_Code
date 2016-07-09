@@ -1,6 +1,6 @@
 /**
 @author LNazarenko
-This class tests the the controller GameCallObjPeople
+This class tests the class GameObjPeople
 */
 
 @isTest(SeeAllData=false)
@@ -10,8 +10,8 @@ private class TestGameObjPeople {
     /**  Test win warrior One */
     @isTest static void TestGameFightWar1() 
     { 
-        Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][0]; 
-        Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1]; 
+        Unit__c warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[0]; 
+        Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[1]; 
         GameObjPeople gameOb = new GameObjPeople();             
         Test.startTest();
         gameOb.StageFightHuman(warriorHum, warriorOrc);
@@ -22,8 +22,8 @@ private class TestGameObjPeople {
     /**  Test win warrior Two */
     @isTest static void TestGameFightWar2() 
     {
-        Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][0]; 
-        Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1]; 
+        Unit__c warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[0]; 
+        Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[1]; 
         GameObjPeople gameOb = new GameObjPeople();             
         Test.startTest();
         gameOb.StageFightHuman(warriorOrc, warriorHum);
@@ -34,8 +34,8 @@ private class TestGameObjPeople {
     /**  Test win warrior One */
     @isTest static void TestGameFightWarOr1() 
     {
-        Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][0]; 
-        Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1]; 
+        Unit__c warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[0]; 
+        Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[1]; 
         GameObjPeople gameOb = new GameObjPeople();             
         Test.startTest();
         gameOb.StageFightOrc(warriorHum, warriorOrc);
@@ -46,8 +46,8 @@ private class TestGameObjPeople {
     /**  Test win warrior Two */
     @isTest static void TestGameFightWarOr2() 
     {
-        Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][0]; 
-        Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1];
+        Unit__c warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[0]; 
+        Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[1];
         GameObjPeople gameOb = new GameObjPeople();             
         Test.startTest();
         gameOb.StageFightOrc(warriorOrc, warriorHum);
