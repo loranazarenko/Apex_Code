@@ -260,20 +260,7 @@ public with sharing class GameCallObjPeople
            Winner          = warrior2.Name;
            warrior1.Stamina__c = false;
            Id idSomeWar    = warrior2.Id;
-           Unit__c someWar = [select Id, Name, WonGames__c, Place_in_the_rating__c
-                    From Unit__c Where Id =: idSomeWar];
-           Integer var     = (Integer)someWar.WonGames__c;
-           System.Debug(var);
-           System.Debug(someWar.WonGames__c);
-           if(someWar.WonGames__c == null)
-           {
-             someWar.WonGames__c = 1;
-           }
-           else
-           {
-             someWar.WonGames__c = var + 1;
-           }
-           update someWar;
+           newWonGames(idSomeWar);
            
          }
          else if(warrior2.HP__c<=0)
@@ -281,20 +268,7 @@ public with sharing class GameCallObjPeople
            warrior2.Stamina__c = false;
            Winner          = warrior1.Name;
            Id idSomeWar    = warrior1.Id;
-           Unit__c someWar = [select Id, Name, WonGames__c, Place_in_the_rating__c
-                    From Unit__c Where Id =: idSomeWar];
-           Integer var = (Integer)someWar.WonGames__c;
-           System.Debug(var);
-           System.Debug(someWar.WonGames__c);
-           if(someWar.WonGames__c == null)
-           {
-             someWar.WonGames__c = 1;
-           }
-           else
-           {
-             someWar.WonGames__c = var + 1;
-           }
-           update someWar;
+           newWonGames(idSomeWar);
          }
          else
          {
@@ -310,6 +284,27 @@ public with sharing class GameCallObjPeople
          Winner = 'Game over.';
         }  
         System.Debug(Winner);
+    }
+    
+    /** 
+    * The method assines a new value for the variable WonGames__c 
+    */ 
+    public void newWonGames(Id idSomeWar)
+    {
+         Unit__c someWar = [select Id, Name, WonGames__c, Place_in_the_rating__c
+                           From Unit__c Where Id =: idSomeWar];
+         Integer var = (Integer)someWar.WonGames__c;
+         System.Debug(var);
+         System.Debug(someWar.WonGames__c);
+         if(someWar.WonGames__c == null)
+         {
+           someWar.WonGames__c = 1;
+         }
+         else
+         {
+           someWar.WonGames__c = var + 1;
+         }
+         update someWar;  
     }
     
     /** 
