@@ -25,9 +25,9 @@ public with sharing class JobControllerObj
    */
    public List<Work_Period__c> getWP()
    {
-     wps = [Select Id, Name, Order__r.Id, Order__r.Account__r.Name, 
+     wps = List<Work_Period__c>([Select Id, Name, Order__r.Id, Order__r.Account__r.Name, 
            Rate__r.Id, Rate__r.Customer_Rate__c, Rate__r.Employer_Rate__c 
-           From Work_Period__c Order by Name ASC]; 
+           From Work_Period__c Order by Name ASC]); 
      System.Debug(wps);
      return wps;
    }
