@@ -5,9 +5,9 @@
 public with sharing class ReportClass
 {
     /** List of the Accounts */
-    public list<Account>accs{get; set;}
+    public List<Account>accs{get; set;}
    /** List of the wrapper's files */
-    public list<Wrapper> accounts{get; set;}
+    public List<Wrapper> accounts{get; set;}
    /** Wrapper's class object */ 
     Wrapper wrap;
    /** Text that would return after press the button Process */ 
@@ -25,11 +25,10 @@ public with sharing class ReportClass
     * Method getAccounts() wraps accounts through special class Wrapper with checkboxes 
     * @return list of the wrapped accounts
     */
-    public list<Wrapper> getAccounts()
+    public List<Wrapper> getAccounts()
     {
-      accounts = new list<Wrapper>();
-      accs     = new list<Account>();
-      accs     = [Select Id,Name from Account Order by Name ASC];
+      accounts = new List<Wrapper>();
+      accs     = new List<Account>([Select Id,Name from Account Order by Name ASC]);
       for(Account accc : accs)
       {
         wrap          = new Wrapper();
