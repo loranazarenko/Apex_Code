@@ -5,30 +5,34 @@
 public with sharing class ReportClass
 {
     /** List of the Accounts */
-    public List<Account>accs{get; set;}
-   /** List of the wrapper's files */
-    public List<Wrapper> accounts{get; set;}
-   /** Wrapper's class object */ 
+    public list<Account>accs{get; set;}
+    /** List of the wrapper's files */
+    public list<Wrapper> accounts{get; set;}
+    /** Wrapper's class object */ 
     Wrapper wrap;
-   /** Text that would return after press the button Process */ 
-    public String myResults{get; set;}
+    /** Text that would return after press the button Process */ 
+    public Set <String> myResults{get; set;}
+    /** Flag used for display the information */ 
+    public Boolean isResult{get; set;}
     
     /**
     * Constructor of the class ReportClass, it calls method getAccounts()
     */
     public ReportClass()
     {  
-	 getAccounts();
+     getAccounts();
+     isResult = false;
     }
     
     /**
     * Method getAccounts() wraps accounts through special class Wrapper with checkboxes 
     * @return list of the wrapped accounts
     */
-    public List<Wrapper> getAccounts()
+    public list<Wrapper> getAccounts()
     {
-      accounts = new List<Wrapper>();
-      accs     = new List<Account>([Select Id,Name from Account Order by Name ASC]);
+      accounts = new list<Wrapper>();
+      accs     = new list<Account>();
+      accs     = [Select Id,Name from Account Order by Name ASC];
       for(Account accc : accs)
       {
         wrap          = new Wrapper();
@@ -44,14 +48,16 @@ public with sharing class ReportClass
     */
     public void processWrapps()
     {
-      myResults = 'Next Wraps were selected: ';
-      for(Wrapper item : accounts)
+      myResults = new Set<String>();
+      for(Wrapper item:accounts)
       {
        if(item.checkbox)
        {
-         myResults += item.acc.Name+', ';
+         myResults.add(item.acc.Name);
        }
       }
+      System.debug(myResults);
+      isResult = true;
     }
     
     /** 
