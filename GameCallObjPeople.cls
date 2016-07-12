@@ -227,7 +227,6 @@ public with sharing class GameCallObjPeople
         {
            if(warrior1.isActive__c)
            {
-             
              if(atk != randType())
              {
                newGame.StageFightHuman(warrior1,warrior2); 
@@ -235,12 +234,12 @@ public with sharing class GameCallObjPeople
            }
            else if (warrior2.isActive__c)
            {
-   
              if(blk != randType())
              {
                 newGame.StageFightOrc(warrior1,warrior2);
              }
            }
+           
            refreshFieldsHum();
            refreshFieldsOrc();
  
@@ -315,13 +314,12 @@ public with sharing class GameCallObjPeople
       {
         insert warriorNew;
       }
-      catch(exception e){}
+      catch(Exception e){}
       PageReference page = new Pagereference('/apex/GameObjPeople?Id='+vid);
       page.setRedirect(false);
       return page;
     }
-    
-    
+
     /** 
     * The method edites the warior 1
     * @return page for edit the warior 1
@@ -429,8 +427,7 @@ public with sharing class GameCallObjPeople
          unitsSOSL.clear();
        }
     }  
-    
-    
+  
     /** 
     * The method creates radiobuttons for the warior 1
     * @return list of the radiobuttons for Attacks 
