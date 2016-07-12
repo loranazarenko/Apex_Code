@@ -330,7 +330,7 @@ public with sharing class GameCallObjPeople
         insert warriorNew;
       }
       catch(exception e){}
-      PageReference page = new Pagereference('/apex/GameObj?Id='+vid);
+      PageReference page = new Pagereference('/apex/GameObjPeople?Id='+vid);
       page.setRedirect(false);
       return page;
     }
@@ -369,7 +369,7 @@ public with sharing class GameCallObjPeople
         update warrior1;
       }
       catch(exception e){}
-      PageReference page = new Pagereference('/apex/GameObj?Id='+vid);
+      PageReference page = new Pagereference('/apex/GameObjPeople?Id='+vid);
       page.setRedirect(false);
       return page;
     }
@@ -385,7 +385,7 @@ public with sharing class GameCallObjPeople
         update warrior2;
       }
       catch(exception e){}
-      PageReference page = new Pagereference('/apex/GameObj?Id='+vid);
+      PageReference page = new Pagereference('/apex/GameObjPeople?Id='+vid);
       page.setRedirect(false);
       return page;
     }
@@ -396,7 +396,7 @@ public with sharing class GameCallObjPeople
     */ 
     public Pagereference ownCancel()
     {
-      PageReference newpage = new Pagereference('/apex/GameObj?Id='+vid);
+      PageReference newpage = new Pagereference('/apex/GameObjPeople?Id='+vid);
       newpage.setRedirect(false);
       return newpage;
     }  
