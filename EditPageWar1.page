@@ -1,4 +1,4 @@
-<apex:page controller="GameCallObj" >
+<apex:page controller="GameCallObjPeople" >
   <apex:form >
     <apex:pageBlock title="Edit Warrior1">
       <apex:pageBlockSection title="Edit Warrior1">
