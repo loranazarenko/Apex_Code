@@ -1,3 +1,4 @@
+
 /**
 @author LNazarenko
 This class defines the fields and methods of the start game and visual page
@@ -65,7 +66,7 @@ public with sharing class GameCallObjPeople
         pickListHum.add(firstOption);
         for (Unit__c warH : warriorsHum) 
         {
-          this.pickListHum.add(new SelectOption(warH.Name,warH.Name));
+          this.pickListHum.add(new SelectOption(warH.Name, warH.Name));
         }
         getOptionsAttack();
       }
@@ -85,7 +86,6 @@ public with sharing class GameCallObjPeople
      */
      public Unit__c getWarrior1()
      {
-       System.debug(warrior1);
        return warrior1;
      }
      
@@ -104,7 +104,6 @@ public with sharing class GameCallObjPeople
      */
      public void setWarrior1(Unit__c war)
      {
-       System.debug(warrior1);
        this.warrior1 = war;
      }
      
@@ -113,7 +112,6 @@ public with sharing class GameCallObjPeople
      */
      public void setWarrior2(Unit__c war)
      {
-        System.debug(warrior2);
         this.warrior2 = war;
      }
      
@@ -131,7 +129,6 @@ public with sharing class GameCallObjPeople
      public void assignmentAttack() 
      {
          atk = Integer.valueof(warrior1.TypeAttack__c.trim());
-         System.debug(warrior1.TypeAttack__c);
      }
      
      /** 
@@ -140,7 +137,6 @@ public with sharing class GameCallObjPeople
      public void assignmentBlock() 
      {
         blk = Integer.valueof(warrior1.TypeBlock__c.trim());
-        System.debug(warrior1.TypeBlock__c);
      }
         
      /** 
@@ -150,9 +146,9 @@ public with sharing class GameCallObjPeople
      public List<Unit__c> getWarriors()
      {
        Datetime lastDay = Datetime.Now().addDays(-1);
-       warriorsHum = new List<Unit__c>([select Id, Name, HP__c, dmgMin__c , dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c,WonGames__c,Place_in_the_rating__c  
-                     From Unit__c 
-                     Where (HP__c>0 Or (LastModifiedDate<:lastDay and HP__c<=0))]);
+       warriorsHum = new List<Unit__c>([Select Id, Name, HP__c, dmgMin__c , dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c,WonGames__c,Place_in_the_rating__c  
+                                        From Unit__c 
+                                        Where (HP__c>0 Or (LastModifiedDate<:lastDay and HP__c<=0))]);
        return warriorsHum;
      }
      
@@ -163,22 +159,22 @@ public with sharing class GameCallObjPeople
      */
      public void refreshFieldsHum()
      {
-       System.debug(selectedWarHum);
        if(selectedWarHum<>null)
        {
-         warrior1 = [select Id, Name, HP__c, dmgMin__c , dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c,WonGames__c,Place_in_the_rating__c    
-                    From Unit__c Where Name =: selectedWarHum];
-         this.warrior1 = warrior1;
+          warrior1 = [Select Id, Name, HP__c, dmgMin__c , dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c, WonGames__c, Place_in_the_rating__c    
+                    From Unit__c 
+                    Where Name =: selectedWarHum];
+          this.warrior1 = warrior1;
                         
          {        
           pickListOr = new list<SelectOption>();
           
           Datetime lastDay = Datetime.Now().addDays(-1);
-          warriorsOrc = new List<Unit__c>([select Id, Name, HP__c, dmgMin__c , dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c,WonGames__c,Place_in_the_rating__c   
-                        From Unit__c 
-                        Where (name!=:selectedWarHum And 
-                        (HP__c>0 Or (LastModifiedDate<:lastDay and HP__c<=0)))]);
-          System.debug(warriorsOrc);              
+          warriorsOrc = new List<Unit__c>([Select Id, Name, HP__c, dmgMin__c , dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c, WonGames__c, Place_in_the_rating__c   
+                                          From Unit__c 
+                                          Where (Name!=:selectedWarHum And 
+                                          (HP__c>0 Or (LastModifiedDate<:lastDay and HP__c<=0)))]);
+               
           SelectOption firstOptionOr = new SelectOption('', ' - Select your favorite fighter' + ' -');
           pickListOr.add(firstOptionOr);
           for (Unit__c warOr : warriorsOrc) 
@@ -186,7 +182,6 @@ public with sharing class GameCallObjPeople
             this.pickListOr.add(new SelectOption(warOr.Name,warOr.Name));
           }
         }
-         System.debug(pickListOr);  
        }
      }
      /** 
@@ -197,8 +192,9 @@ public with sharing class GameCallObjPeople
        System.debug(selectedWarOrc);
        if(selectedWarOrc<>null)
        {
-         warrior2 = [select Id, Name, HP__c, dmgMin__c, dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c, WonGames__c,Place_in_the_rating__c
-                    From Unit__c Where Name =: selectedWarOrc];
+         warrior2 = [Select Id, Name, HP__c, dmgMin__c, dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c, WonGames__c, Place_in_the_rating__c
+                    From Unit__c 
+                    Where Name =: selectedWarOrc];
          this.warrior2 = warrior2;
        }
        
@@ -216,8 +212,8 @@ public with sharing class GameCallObjPeople
     */ 
     public integer randType()
     {
-     System.debug((integer)(Math.floor(Math.random() * 4) + 1));
-     return (integer)(Math.floor(Math.random() * 4) + 1);
+      System.debug((integer)(Math.floor(Math.random() * 4) + 1));
+      return (integer)(Math.floor(Math.random() * 4) + 1);
     } 
     
     /** 
@@ -227,63 +223,54 @@ public with sharing class GameCallObjPeople
     */    
     public void ownStart()
     { 
-        System.Debug(warrior1);
-        System.Debug(warrior2);
-        
         if(warrior1!=null&&warrior2!=null&&warrior1.HP__c>0&&warrior2.HP__c>0)
         {
-         if(warrior1.isActive__c)
-         {
-           System.Debug(firstKik);
-           System.Debug(warrior1.isActive__c);
-           
-           if(atk != randType())
+           if(warrior1.isActive__c)
            {
+             
+             if(atk != randType())
+             {
                newGame.StageFightHuman(warrior1,warrior2); 
+             }
            }
-         }
-         else if (warrior2.isActive__c)
-         {
-           System.Debug(firstKik);
-           System.Debug(warrior2.isActive__c);
-           if(blk != randType())
+           else if (warrior2.isActive__c)
            {
-               newGame.StageFightOrc(warrior1,warrior2);
+   
+             if(blk != randType())
+             {
+                newGame.StageFightOrc(warrior1,warrior2);
+             }
            }
-         }
-         refreshFieldsHum();
-         refreshFieldsOrc();
-         System.Debug(warrior1);
-         System.Debug(warrior2);
-         if(warrior1.HP__c<=0)
-         {
-           Winner          = warrior2.Name;
-           warrior1.Stamina__c = false;
-           Id idSomeWar    = warrior2.Id;
-           newWonGames(idSomeWar);
-           
-         }
-         else if(warrior2.HP__c<=0)
-         {
-           warrior2.Stamina__c = false;
-           Winner          = warrior1.Name;
-           Id idSomeWar    = warrior1.Id;
-           newWonGames(idSomeWar);
-         }
-         else
-         {
-           Winner = '';
-         }
-        } 
-        else if(warrior1==null||warrior2==null)
-        {
-         Winner = 'Fill, please, all fields.';
-        }   
-         else if(warrior1.HP__c<=0||warrior2.HP__c<=0)
-        {
-         Winner = 'Game over.';
-        }  
-        System.Debug(Winner);
+           refreshFieldsHum();
+           refreshFieldsOrc();
+ 
+           if(warrior1.HP__c<=0)
+           {
+             Winner              = warrior2.Name;
+             warrior1.Stamina__c = false;
+             Id idSomeWar        = warrior2.Id;
+             newWonGames(idSomeWar);
+            }
+            else if(warrior2.HP__c<=0)
+           {
+             warrior2.Stamina__c = false;
+             Winner              = warrior1.Name;
+             Id idSomeWar        = warrior1.Id;
+             newWonGames(idSomeWar);
+           }
+           else
+           {
+             Winner = 'Not yet';
+           }
+          } 
+          else if(warrior1==null||warrior2==null)
+          {
+            Winner = 'Fill, please, all fields.';
+          }   
+           else if(warrior1.HP__c<=0||warrior2.HP__c<=0)
+          {
+            Winner = 'Game over.';
+          }  
     }
     
     /** 
@@ -291,11 +278,10 @@ public with sharing class GameCallObjPeople
     */ 
     public void newWonGames(Id idSomeWar)
     {
-         Unit__c someWar = [select Id, Name, WonGames__c, Place_in_the_rating__c
+         Unit__c someWar = [Select Id, Name, WonGames__c, Place_in_the_rating__c
                            From Unit__c Where Id =: idSomeWar];
          Integer var = (Integer)someWar.WonGames__c;
-         System.Debug(var);
-         System.Debug(someWar.WonGames__c);
+ 
          if(someWar.WonGames__c == null)
          {
            someWar.WonGames__c = 1;
