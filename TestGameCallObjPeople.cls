@@ -3,8 +3,81 @@
 This class tests the the controller GameCallObjPeople
 */
 
-@isTest(SeeAllData=false)
-private class TestGameCallObjPeople {
+ @isTest(SeeAllData=false)
+ private class TestGameCallObjPeople {
+
+    /** Data for tests */
+    @testSetup
+    static void allTheDataForThisTestClass() {
+    
+       Unit__c warriorHum  = new Unit__c();
+       warriorHum.Name         = 'Hard kick';
+       warriorHum.HP__c        = 10000;
+       warriorHum.dmgMin__c    = 5;
+       warriorHum.dmgMax__c    = 10;
+       warriorHum.isActive__c  = true;
+       warriorHum.TypeAttack__c= '1';
+       warriorHum.TypeBlock__c = '1';
+       warriorHum.WonGames__c  = null;
+       insert warriorHum;
+       
+       Unit__c warriorOrc = new Unit__c();
+       warriorOrc.Name         = 'Brave blood';
+       warriorOrc.HP__c        = 10;
+       warriorOrc.dmgMin__c    = 19;
+       warriorOrc.dmgMax__c    = 30;
+       warriorOrc.isActive__c  = false;
+       warriorOrc.TypeAttack__c= '2';
+       warriorOrc.TypeBlock__c = '2';
+       warriorOrc.WonGames__c  = null;
+       insert warriorOrc;
+       
+       Unit__c warriorZeroHum = new Unit__c();
+       warriorZeroHum.Name         = 'Null Hum';
+       warriorZeroHum.HP__c        = 0;
+       warriorZeroHum.dmgMin__c    = 1;
+       warriorZeroHum.dmgMax__c    = 2;
+       warriorZeroHum.isActive__c  = true;
+       warriorZeroHum.TypeAttack__c= '3';
+       warriorZeroHum.TypeBlock__c = '3';
+       insert warriorZeroHum;
+       
+       Unit__c warriorZeroOrc = new Unit__c();
+       warriorZeroOrc.Name        = 'Null Orc';
+       warriorZeroOrc.HP__c       = 0;
+       warriorZeroOrc.dmgMin__c   = 1;
+       warriorZeroOrc.dmgMax__c   = 2;
+       warriorZeroOrc.isActive__c = true;
+       warriorZeroOrc.TypeAttack__c= '4';
+       warriorZeroOrc.TypeBlock__c = '4';
+       insert warriorZeroOrc;
+       
+       Unit__c warriorHumF        = new Unit__c();
+       warriorHumF.Name           = 'Blood dog';
+       warriorHumF.HP__c          = 10000;
+       warriorHumF.dmgMin__c      = 1;
+       warriorHumF.dmgMax__c      = 2;
+       warriorHumF.isActive__c    = false;
+       warriorHumF.WonGames__c     = 1;
+       insert warriorHumF;
+       
+       Unit__c warriorOrcF = new Unit__c();
+       warriorOrcF.Name           ='Horror of the night';
+       warriorOrcF.HP__c          = 10;
+       warriorOrcF.dmgMin__c      = 19;
+       warriorOrcF.dmgMax__c      = 30;
+       warriorOrcF.isActive__c    = true;
+       warriorOrcF.WonGames__c     = 1;
+       insert warriorOrcF;
+       
+       Unit__c warriorOrcFMin = new Unit__c();
+       warriorOrcFMin.Name        ='Terrible';
+       warriorOrcFMin.HP__c       = 1;
+       warriorOrcFMin.dmgMin__c   = 1;
+       warriorOrcFMin.dmgMax__c   = 1;
+       warriorOrcFMin.isActive__c = false;
+       insert warriorOrcFMin;
+    }
      
     /** Test Start game with high advantages for warrior 1 */
     static testMethod void testConGameCallWar1() {
@@ -26,7 +99,7 @@ private class TestGameCallObjPeople {
        Test.stopTest();
        String Winner = controller.Winner;
        /** Verify that the success page displays */
-       System.assertEquals(Winner, '');
+       System.assertEquals(Winner, 'Not yet');
    }   
    
    /** Test Start game with high advantages for warrior 2 */ 
@@ -44,7 +117,7 @@ private class TestGameCallObjPeople {
        controller.ownStart();
        Test.stopTest();
        String Winner = controller.Winner;
-       System.assertEquals(Winner, '');
+       System.assertEquals(Winner, 'Not yet');
    }      
      /** Test edit page for warrior 1 */ 
      static testMethod void testConGameCallEditWar1() {
@@ -218,7 +291,7 @@ private class TestGameCallObjPeople {
        controller.ownCancel(); 
        String curPage = controller.ownCancel().getUrl();
        Test.stopTest();
-       System.assertEquals('/apex/GameObj'+'?Id='+vid, curPage );
+       System.assertEquals('/apex/GameObjPeople'+'?Id='+vid, curPage );
     } 
     
     /** Testing of the save method on the edit pages */
@@ -230,7 +303,7 @@ private class TestGameCallObjPeople {
        Test.startTest();
        String curPage = controller.ownSaveWar1Page().getUrl();
        Test.stopTest();
-       System.assertEquals('/apex/GameObj'+'?Id='+vid, curPage );
+       System.assertEquals('/apex/GameObjPeople'+'?Id='+vid, curPage );
     } 
     
     /** Testing of the save method on the edit pages */
@@ -242,7 +315,7 @@ private class TestGameCallObjPeople {
        String vid = ApexPages.currentPage().getParameters().get('id');
        String curPage = controller.ownSaveWar2Page().getUrl();
        Test.stopTest();
-       System.assertEquals('/apex/GameObj'+'?Id='+vid, curPage );
+       System.assertEquals('/apex/GameObjPeople'+'?Id='+vid, curPage );
     } 
     
     /** Testing of the save method on the save page */
@@ -254,7 +327,7 @@ private class TestGameCallObjPeople {
        String vid = ApexPages.currentPage().getParameters().get('id');
        String curPage = controller.ownSaveWarNewPage().getUrl();
        Test.stopTest();
-       System.assertEquals('/apex/GameObj'+'?Id='+vid, curPage );
+       System.assertEquals('/apex/GameObjPeople'+'?Id='+vid, curPage );
     } 
     
     /** Testing of warriors with HP == 0 */
@@ -293,16 +366,28 @@ private class TestGameCallObjPeople {
        PageReference pageRef = Page.GameObjPeople;
        Test.setCurrentPage(pageRef);
        GameCallObjPeople controller = new GameCallObjPeople();
-        Unit__c warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
-                            isActive__c, TypeAttack__c, TypeBlock__c From Unit__c])[0]; 
+       Unit__c warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
+                            isActive__c, TypeAttack__c, TypeBlock__c, WonGames__c From Unit__c])[0]; 
        Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
-                            isActive__c, TypeAttack__c, TypeBlock__c From Unit__c])[1]; 
+                            isActive__c, TypeAttack__c, TypeBlock__c, WonGames__c From Unit__c])[1]; 
        controller.setWarrior1(warriorHum);
        controller.setWarrior2(warriorOrc); 
        Test.startTest();
        controller.ownStart();
        controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
        Test.stopTest();
+       
+       warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
+                            isActive__c, TypeAttack__c, TypeBlock__c, WonGames__c From Unit__c])[0]; 
+       warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
+                            isActive__c, TypeAttack__c, TypeBlock__c, WonGames__c From Unit__c])[1];
+       System.debug(controller.Winner);
+       System.debug(warriorHum.WonGames__c);
+       System.debug(warriorOrc.WonGames__c);
        System.assertEquals(warriorHum.WonGames__c, 1);
     }
     
@@ -311,16 +396,35 @@ private class TestGameCallObjPeople {
        PageReference pageRef = Page.GameObjPeople;
        Test.setCurrentPage(pageRef);
        GameCallObjPeople controller = new GameCallObjPeople();
-        Unit__c warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
-                            isActive__c, TypeAttack__c, TypeBlock__c From Unit__c])[4]; 
+       Unit__c warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
+                            isActive__c, TypeAttack__c, TypeBlock__c, WonGames__c From Unit__c])[4]; 
        Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
-                            isActive__c, TypeAttack__c, TypeBlock__c From Unit__c])[5]; 
+                            isActive__c, TypeAttack__c, TypeBlock__c, WonGames__c From Unit__c])[5]; 
        controller.setWarrior1(warriorHum);
        controller.setWarrior2(warriorOrc); 
        Test.startTest();
        controller.ownStart();
        controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
+       controller.ownStart();
        Test.stopTest();
+       
+       warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
+                            isActive__c, TypeAttack__c, TypeBlock__c, WonGames__c From Unit__c])[4]; 
+       warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c, 
+                            isActive__c, TypeAttack__c, TypeBlock__c, WonGames__c From Unit__c])[5]; 
+
+       System.debug(controller.Winner);
+       System.debug(warriorHum.WonGames__c);
+       System.debug(warriorOrc.WonGames__c);
        System.assertEquals(warriorHum.WonGames__c, 2);
        System.assertEquals(warriorOrc.WonGames__c, 1);
     }
@@ -461,78 +565,4 @@ private class TestGameCallObjPeople {
         Test.stopTest();
         System.assertEquals(otherValues.size(),0);
     } 
-    
-    /** Data for tests */
-    @testSetup
-    static void allTheDataForThisTestClass() {
-    
-       Unit__c warriorHum  = new Unit__c();
-       warriorHum.Name         = 'Hard kick';
-       warriorHum.HP__c        = 10000;
-       warriorHum.dmgMin__c    = 5;
-       warriorHum.dmgMax__c    = 10;
-       warriorHum.isActive__c  = true;
-       warriorHum.TypeAttack__c= '1';
-       warriorHum.TypeBlock__c = '1';
-       warriorHum.WonGames__c  = null;
-       insert warriorHum;
-       
-       Unit__c warriorOrc = new Unit__c();
-       warriorOrc.Name         = 'Brave blood';
-       warriorOrc.HP__c        = 10;
-       warriorOrc.dmgMin__c    = 19;
-       warriorOrc.dmgMax__c    = 30;
-       warriorOrc.isActive__c  = false;
-       warriorOrc.TypeAttack__c= '2';
-       warriorOrc.TypeBlock__c = '2';
-       warriorOrc.WonGames__c  = null;
-       insert warriorOrc;
-       
-       Unit__c warriorZeroHum = new Unit__c();
-       warriorZeroHum.Name         = 'Null Hum';
-       warriorZeroHum.HP__c        = 0;
-       warriorZeroHum.dmgMin__c    = 1;
-       warriorZeroHum.dmgMax__c    = 2;
-       warriorZeroHum.isActive__c  = true;
-       warriorZeroHum.TypeAttack__c= '3';
-       warriorZeroHum.TypeBlock__c = '3';
-       insert warriorZeroHum;
-       
-       Unit__c warriorZeroOrc = new Unit__c();
-       warriorZeroOrc.Name        = 'Null Orc';
-       warriorZeroOrc.HP__c       = 0;
-       warriorZeroOrc.dmgMin__c   = 1;
-       warriorZeroOrc.dmgMax__c   = 2;
-       warriorZeroOrc.isActive__c = true;
-       warriorZeroOrc.TypeAttack__c= '4';
-       warriorZeroOrc.TypeBlock__c = '4';
-       insert warriorZeroOrc;
-       
-       Unit__c warriorHumF        = new Unit__c();
-       warriorHumF.Name           = 'Blood dog';
-       warriorHumF.HP__c          = 10000;
-       warriorHumF.dmgMin__c      = 1;
-       warriorHumF.dmgMax__c      = 2;
-       warriorHumF.isActive__c    = false;
-       warriorHumF.WonGames__c     = 1;
-       insert warriorHumF;
-       
-       Unit__c warriorOrcF = new Unit__c();
-       warriorOrcF.Name           ='Horror of the night';
-       warriorOrcF.HP__c          = 10;
-       warriorOrcF.dmgMin__c      = 19;
-       warriorOrcF.dmgMax__c      = 30;
-       warriorOrcF.isActive__c    = true;
-       warriorOrcF.WonGames__c     = 1;
-       insert warriorOrcF;
-       
-       Unit__c warriorOrcFMin = new Unit__c();
-       warriorOrcFMin.Name        ='Terrible';
-       warriorOrcFMin.HP__c       = 1;
-       warriorOrcFMin.dmgMin__c   = 1;
-       warriorOrcFMin.dmgMax__c   = 1;
-       warriorOrcFMin.isActive__c = false;
-       insert warriorOrcFMin;
-    }
-     
  }
