@@ -415,7 +415,10 @@ public with sharing class GameCallObjPeople
     */
     public void searchSOQL() 
     {  
-       unitsSOQL = [select name,id from Unit__c where name =: searchstring];
+       if(String.isBlank(searchstring)==false)
+       {
+         unitsSOQL = [select name,id from Unit__c where name =: searchstring];
+       }
     }
     
     /** '
@@ -423,7 +426,10 @@ public with sharing class GameCallObjPeople
     */
     public void searchSOSL() 
     {  
-       unitsSOSL = (List<Unit__c>)([FIND :searchstring IN ALL Fields RETURNING Unit__c(name,id)][0]);  
+       if(String.isBlank(searchstring)==false)
+       {
+         unitsSOSL = (List<Unit__c>)([FIND :searchstring IN ALL Fields RETURNING Unit__c(name,id)][0]);  
+       }
     }
     
     /** 
@@ -431,8 +437,11 @@ public with sharing class GameCallObjPeople
     */
     public void clear()
     {  
-       unitsSOQL.clear();  
-       unitsSOSL.clear();
+       if(String.isBlank(searchstring)==false)
+       {
+         unitsSOQL.clear();  
+         unitsSOSL.clear();
+       }
     }  
     
     
