@@ -168,9 +168,12 @@ public with sharing class GameCallObj
     */    
     public void ownStart()
     {
-        newGame  = new GameObj();
-        Winner   = newGame.Fight(warrior1,warrior2);
-        System.Debug(Winner);
+        if(warrior1!=null&&warrior2!=null&&warrior1.HP__c>0&&warrior2.HP__c>0)
+        {
+          newGame  = new GameObj();
+          Winner   = newGame.Fight(warrior1,warrior2);
+          System.Debug(Winner);
+        }
     }
     
     /** 
