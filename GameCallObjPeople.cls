@@ -263,7 +263,7 @@ public with sharing class GameCallObjPeople
     }
     
     /** 
-    * The method assines a new value for the variable WonGames__c 
+    * The method assigns a new value for the variable WonGames__c 
     */ 
     public void newWonGames(Id idSomeWar)
     {
