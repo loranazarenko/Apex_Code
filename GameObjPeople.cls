@@ -47,10 +47,7 @@ public with sharing class GameObjPeople
             {
               unHuman.HP__c = 0;
               update unHuman;   
-              System.debug('After hit Life of human is ' +unHuman.HP__c + ' Hit is ' +dmgHum );
             }
-            System.debug('Life of human is ' +unHuman.HP__c);
-            System.debug('Life of orc is ' +unOrc.HP__c);
           }
           else
           {
@@ -65,10 +62,8 @@ public with sharing class GameObjPeople
             {
               unOrc.HP__c = 0;
               update unOrc;   
-              System.debug('After hit Life of orc is ' +unOrc.HP__c + ' Hit is ' +dmgOrc);
             }
-           System.debug('Life of human is ' +unHuman.HP__c);
-           System.debug('Life of orc is ' +unOrc.HP__c);
-         }
-    } 
+
+          }
+     } 
  }
