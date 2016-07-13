@@ -6,6 +6,16 @@ This class tests the class GameObjPeople
 @isTest(SeeAllData=false)
 
 private class TestGameObjPeople {
+
+    /** Data for tests */
+    @testSetup
+    static void allTheDataForThisTestClass() 
+    {
+        Unit__c unitOne = new Unit__c(Name='Test Unit1', HP__c=0, dmgMin__c=20, dmgMax__c=50);
+        insert unitOne;
+        Unit__c unitTwo = new Unit__c(Name='Test Unit2', HP__c=100000, dmgMin__c=1, dmgMax__c=3);
+        insert unitTwo;
+    }
     
     /**  Test win warrior One */
     @isTest static void TestGameFightWar1() 
@@ -14,7 +24,7 @@ private class TestGameObjPeople {
         Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[1]; 
         GameObjPeople gameOb = new GameObjPeople();             
         Test.startTest();
-        gameOb.StageFightHuman(warriorHum, warriorOrc);
+        gameOb.StageFight(warriorHum, warriorOrc, true);
         Test.stopTest();
         System.assertEquals(warriorHum.HP__c,0);
     }    
@@ -26,7 +36,7 @@ private class TestGameObjPeople {
         Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[1]; 
         GameObjPeople gameOb = new GameObjPeople();             
         Test.startTest();
-        gameOb.StageFightHuman(warriorOrc, warriorHum);
+        gameOb.StageFight(warriorOrc, warriorHum, true);
         Test.stopTest();
         System.assertEquals(warriorHum.HP__c,0);
     }   
@@ -38,7 +48,7 @@ private class TestGameObjPeople {
         Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[1]; 
         GameObjPeople gameOb = new GameObjPeople();             
         Test.startTest();
-        gameOb.StageFightOrc(warriorHum, warriorOrc);
+        gameOb.StageFight(warriorHum, warriorOrc, false);
         Test.stopTest();
         System.assertEquals(warriorHum.HP__c,0);
     }   
@@ -50,19 +60,8 @@ private class TestGameObjPeople {
         Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[1];
         GameObjPeople gameOb = new GameObjPeople();             
         Test.startTest();
-        gameOb.StageFightOrc(warriorOrc, warriorHum);
+        gameOb.StageFight(warriorOrc, warriorHum, false);
         Test.stopTest();
         System.assertEquals(warriorHum.HP__c,0);
     } 
-    
-    /** Data for tests */
-    @testSetup
-    static void allTheDataForThisTestClass() 
-    {
-        Unit__c unitOne = new Unit__c(Name='Test Unit1', HP__c=0, dmgMin__c=20, dmgMax__c=50);
-        insert unitOne;
-        Unit__c unitTwo = new Unit__c(Name='Test Unit2', HP__c=100000, dmgMin__c=1, dmgMax__c=3);
-        insert unitTwo;
-    }
-
 }
