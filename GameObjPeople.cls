@@ -28,7 +28,7 @@ public with sharing class GameObjPeople
     } 
     
     /** 
-    * The method creates next stage of the game for warrior 1  
+    * The method creates next stage of the game for warriors 
     * @param unHuman passes the value of the warrior 1
     * @param unOrc passes the value of the warrior 2
     */
