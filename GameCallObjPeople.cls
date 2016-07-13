@@ -1,4 +1,3 @@
-
 /**
 @author LNazarenko
 This class defines the fields and methods of the start game and visual page
@@ -95,7 +94,6 @@ public with sharing class GameCallObjPeople
      */
      public Unit__c getWarrior2()
      {
-        System.debug(warrior2);
         return warrior2;
      }
      
@@ -184,12 +182,12 @@ public with sharing class GameCallObjPeople
         }
        }
      }
+     
      /** 
      * The method shows fields of the second warrior and assigns at warrior's field 'isActive __c' a value 'true' 
      */
      public void refreshFieldsOrc()
      {
-       System.debug(selectedWarOrc);
        if(selectedWarOrc<>null)
        {
          warrior2 = [Select Id, Name, HP__c, dmgMin__c, dmgMax__c, isActive__c, TypeAttack__c, TypeBlock__c, WonGames__c, Place_in_the_rating__c
@@ -212,7 +210,6 @@ public with sharing class GameCallObjPeople
     */ 
     public integer randType()
     {
-      System.debug((integer)(Math.floor(Math.random() * 4) + 1));
       return (integer)(Math.floor(Math.random() * 4) + 1);
     } 
     
@@ -229,14 +226,14 @@ public with sharing class GameCallObjPeople
            {
              if(atk != randType())
              {
-               newGame.StageFightHuman(warrior1,warrior2); 
+               newGame.StageFight(warrior1,warrior2,true); 
              }
            }
            else if (warrior2.isActive__c)
            {
              if(blk != randType())
              {
-                newGame.StageFightOrc(warrior1,warrior2);
+                newGame.StageFight(warrior1,warrior2,false);
              }
            }
            
@@ -245,8 +242,8 @@ public with sharing class GameCallObjPeople
  
            if(warrior1.HP__c<=0)
            {
-             Winner              = warrior2.Name;
              warrior1.Stamina__c = false;
+             Winner              = warrior2.Name;
              Id idSomeWar        = warrior2.Id;
              newWonGames(idSomeWar);
             }
@@ -314,12 +311,13 @@ public with sharing class GameCallObjPeople
       {
         insert warriorNew;
       }
-      catch(Exception e){}
+      catch(exception e){}
       PageReference page = new Pagereference('/apex/GameObjPeople?Id='+vid);
       page.setRedirect(false);
       return page;
     }
-
+    
+    
     /** 
     * The method edites the warior 1
     * @return page for edit the warior 1
@@ -427,7 +425,8 @@ public with sharing class GameCallObjPeople
          unitsSOSL.clear();
        }
     }  
-  
+    
+    
     /** 
     * The method creates radiobuttons for the warior 1
     * @return list of the radiobuttons for Attacks 
