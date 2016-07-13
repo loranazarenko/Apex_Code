@@ -32,8 +32,10 @@ public with sharing class GameObjPeople
     * @param unHuman passes the value of the warrior 1
     * @param unOrc passes the value of the warrior 2
     */
-    public void StageFightHuman(Unit__c unHuman, Unit__c unOrc)
+    public void StageFight(Unit__c unHuman, Unit__c unOrc, Boolean Flag)
     {
+          if(Flag)
+          {
             integer dmgHum = getHit((integer)unOrc.dmgMin__c,(integer)unOrc.dmgMax__c);
             integer lostLifeHum = reduceLife((integer)unHuman.HP__c,dmgHum);
             unHuman.HP__c       = lostLifeHum;
@@ -49,15 +51,9 @@ public with sharing class GameObjPeople
             }
             System.debug('Life of human is ' +unHuman.HP__c);
             System.debug('Life of orc is ' +unOrc.HP__c);
-     }
-     
-     /** 
-    * The method creates next stage of the game for warrior 2 - automatic
-    * @param unHuman passes the value of the warrior 1
-    * @param unOrc passes the value of the warrior 2
-    */
-     public void StageFightOrc(Unit__c unHuman, Unit__c unOrc)
-     { 
+          }
+          else
+          {
             integer dmgOrc = getHit((integer)unHuman.dmgMin__c,(integer)unHuman.dmgMax__c);
             integer lostLifeOrc = reduceLife((integer)unOrc.HP__c,dmgOrc);
             unOrc.HP__c       = lostLifeOrc;
@@ -73,5 +69,6 @@ public with sharing class GameObjPeople
             }
            System.debug('Life of human is ' +unHuman.HP__c);
            System.debug('Life of orc is ' +unOrc.HP__c);
+         }
     } 
  }
