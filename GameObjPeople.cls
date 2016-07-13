@@ -54,10 +54,10 @@ public with sharing class GameObjPeople
           }
           else
           {
-            integer dmgOrc = getHit((integer)unHuman.dmgMin__c,(integer)unHuman.dmgMax__c);
+            integer dmgOrc      = getHit((integer)unHuman.dmgMin__c,(integer)unHuman.dmgMax__c);
             integer lostLifeOrc = reduceLife((integer)unOrc.HP__c,dmgOrc);
-            unOrc.HP__c       = lostLifeOrc;
-            unOrc.isActive__c = false;
+            unOrc.HP__c         = lostLifeOrc;
+            unOrc.isActive__c   = false;
             update unOrc;
             unHuman.isActive__c = true;
             update unHuman;
