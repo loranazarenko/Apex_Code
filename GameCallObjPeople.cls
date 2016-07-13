@@ -236,7 +236,7 @@ public with sharing class GameCallObjPeople
                 newGame.StageFight(warrior1,warrior2,false);
              }
            }
-
+           
            if(warrior1.HP__c<=0)
            {
              warrior1.Stamina__c = false;
@@ -304,7 +304,7 @@ public with sharing class GameCallObjPeople
       {
         insert warriorNew;
       }
-      catch(exception e){}
+      catch(Exception e){}
       PageReference page = new Pagereference('/apex/GameObjPeople?Id='+vid);
       page.setRedirect(false);
       return page;
@@ -342,7 +342,7 @@ public with sharing class GameCallObjPeople
       {
         update warrior1;
       }
-      catch(exception e){}
+      catch(Exception e){}
       PageReference page = new Pagereference('/apex/GameObjPeople?Id='+vid);
       page.setRedirect(false);
       return page;
@@ -358,7 +358,7 @@ public with sharing class GameCallObjPeople
       {
         update warrior2;
       }
-      catch(exception e){}
+      catch(Exception e){}
       PageReference page = new Pagereference('/apex/GameObjPeople?Id='+vid);
       page.setRedirect(false);
       return page;
