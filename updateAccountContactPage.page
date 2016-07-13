@@ -1,0 +1,16 @@
+<apex:page showHeader="true" sidebar="true" controller="updateAccountContact">
+    <apex:form >
+        <apex:pageMessages />
+        <apex:pageBlock mode="inlineEdit">
+                <apex:pageBlockButtons >
+                    <apex:commandButton action="{!saveRecord}" value="Save"/>
+                    <apex:commandButton action="{!revertChanges}" value="Cancel"/>
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection >
+                    <apex:outputField value="{!updateContactRecord.FirstName}" />
+                    <apex:outputField value="{!updateContactRecord.LastName}" />
+                    <apex:outputField value="{!updateContactRecord.Phone}" />
+                </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
