@@ -32,9 +32,9 @@ public with sharing class GameObjPeople
     * @param unHuman passes the value of the warrior 1
     * @param unOrc passes the value of the warrior 2
     */
-    public void StageFight(Unit__c unHuman, Unit__c unOrc, Boolean Flag)
+    public void StageFight(Unit__c unHuman, Unit__c unOrc, Boolean flag)
     {
-          if(Flag)
+          if(flag)
           {
             integer dmgHum = getHit((integer)unOrc.dmgMin__c,(integer)unOrc.dmgMax__c);
             integer lostLifeHum = reduceLife((integer)unHuman.HP__c,dmgHum);
