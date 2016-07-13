@@ -258,15 +258,11 @@ public with sharing class GameCallObjPeople
            {
              Winner = 'Not yet';
            }
-          } 
-          else if(warrior1==null||warrior2==null)
-          {
-            Winner = 'Fill, please, all fields.';
-          }   
-           else if(warrior1.HP__c<=0||warrior2.HP__c<=0)
-          {
-            Winner = 'Game over.';
-          }  
+        } 
+        else if(warrior1==null||warrior2==null)
+        {
+           Winner = 'Fill, please, all fields.';
+        }   
     }
     
     /** 
@@ -316,7 +312,6 @@ public with sharing class GameCallObjPeople
       page.setRedirect(false);
       return page;
     }
-    
     
     /** 
     * The method edites the warior 1
@@ -425,7 +420,6 @@ public with sharing class GameCallObjPeople
          unitsSOSL.clear();
        }
     }  
-    
     
     /** 
     * The method creates radiobuttons for the warior 1
