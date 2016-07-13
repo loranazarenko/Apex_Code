@@ -5,6 +5,39 @@ This class tests the the controller GameCallObj
 
 @isTest(SeeAllData=false)
 private class TestGameCallObj {
+
+    /** Data for tests */
+    @testSetup
+    static void allTheDataForThisTestClass() 
+    {
+       Unit__c warriorHum  = new Unit__c();
+       warriorHum.Name     ='Hard kick';
+       warriorHum.HP__c    = 10000;
+       warriorHum.dmgMin__c= 1;
+       warriorHum.dmgMax__c= 2;
+       insert warriorHum;
+       
+       Unit__c warriorOrc   = new Unit__c();
+       warriorOrc.Name      = 'Brave blood';
+       warriorOrc.HP__c     = 10;
+       warriorOrc.dmgMin__c = 19;
+       warriorOrc.dmgMax__c = 30;
+       insert warriorOrc;
+       
+       Unit__c warriorZeroHum   = new Unit__c();
+       warriorZeroHum.Name      = 'Null Hum';
+       warriorZeroHum.HP__c     = 0;
+       warriorZeroHum.dmgMin__c = 1;
+       warriorZeroHum.dmgMax__c = 2;
+       insert warriorZeroHum;
+       
+       Unit__c warriorZeroOrc   = new Unit__c();
+       warriorZeroOrc.Name      = 'Null Orc';
+       warriorZeroOrc.HP__c     = 0;
+       warriorZeroOrc.dmgMin__c = 1;
+       warriorZeroOrc.dmgMax__c = 2;
+       insert warriorZeroOrc;
+    }
      
     /** Test Start game with high advantages for warrior 1 */
     static testMethod void testConGameCallWar1() {
@@ -14,8 +47,8 @@ private class TestGameCallObj {
        /** Instantiate and construct the controller class. */  
        GameCallObj controller = new GameCallObj();
        /** Get warriors and set */
-       Unit__c warriorHum = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[0]; 
-       Unit__c warriorOrc = new List<Unit__c>([Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c])[1]; 
+       Unit__c warriorHum = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][0]; 
+       Unit__c warriorOrc = [Select Name, Id, dmgMin__c, HP__c, dmgMax__c From Unit__c][1]; 
        controller.setWarrior1(warriorHum);
        controller.setWarrior2(warriorOrc); 
        Test.startTest();
@@ -260,38 +293,4 @@ private class TestGameCallObj {
        System.assertEquals(warriorZeroHum.HP__c, 0);
        System.assertEquals(warriorZeroOrc.HP__c, 0);
     }
-    
-    /** Data for tests */
-    @testSetup
-    static void allTheDataForThisTestClass() 
-    {
-       Unit__c warriorHum  = new Unit__c();
-       warriorHum.Name     ='Hard kick';
-       warriorHum.HP__c    = 10000;
-       warriorHum.dmgMin__c= 1;
-       warriorHum.dmgMax__c= 2;
-       insert warriorHum;
-       
-       Unit__c warriorOrc   = new Unit__c();
-       warriorOrc.Name      = 'Brave blood';
-       warriorOrc.HP__c     = 10;
-       warriorOrc.dmgMin__c = 19;
-       warriorOrc.dmgMax__c = 30;
-       insert warriorOrc;
-       
-       Unit__c warriorZeroHum   = new Unit__c();
-       warriorZeroHum.Name      = 'Null Hum';
-       warriorZeroHum.HP__c     = 0;
-       warriorZeroHum.dmgMin__c = 1;
-       warriorZeroHum.dmgMax__c = 2;
-       insert warriorZeroHum;
-       
-       Unit__c warriorZeroOrc   = new Unit__c();
-       warriorZeroOrc.Name      = 'Null Orc';
-       warriorZeroOrc.HP__c     = 0;
-       warriorZeroOrc.dmgMin__c = 1;
-       warriorZeroOrc.dmgMax__c = 2;
-       insert warriorZeroOrc;
-    }
-     
  }
