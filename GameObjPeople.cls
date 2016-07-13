@@ -65,5 +65,5 @@ public with sharing class GameObjPeople
             }
 
           }
-     } 
+    } 
  }
