@@ -236,10 +236,7 @@ public with sharing class GameCallObjPeople
                 newGame.StageFight(warrior1,warrior2,false);
              }
            }
-           
-           refreshFieldsHum();
-           refreshFieldsOrc();
- 
+
            if(warrior1.HP__c<=0)
            {
              warrior1.Stamina__c = false;
