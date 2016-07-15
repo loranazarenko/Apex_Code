@@ -5,42 +5,8 @@ This class tests the Companies
 @isTest(SeeAllData=false)
 
   private class TestCompanies {
-   
-    /** testCompanies checks company that returns after call */
-    static testMethod void testCompanies() {
-       /** Use the PageReference Apex class to instantiate a page */
-       PageReference pageRef = Page.JobPageTab;
-       Test.setCurrentPage(pageRef);
-       /** Instantiate and construct the controller class. */  
-       JobControllerObj controller = new JobControllerObj();
-       /** Get companies with work periods and set */
-       Test.startTest();
-       List <Account> cmp = controller.getCompany();
-       System.Debug(cmp);
-       Test.stopTest();
-       List <Account> companies = List<Account>([select Id, Name from Account Order by Name ASC]);   
-       System.assertEquals(companies[0].Name, 'Cisco');
-    }   
-    
-    /** testCompanies checks Work Periods that return after call */
-    static testMethod void testWorkPeriods() {
-       /** Use the PageReference Apex class to instantiate a page */
-       PageReference pageRef = Page.JobPageTab;
-       Test.setCurrentPage(pageRef);
-       /** Instantiate and construct the controller class. */  
-       JobControllerObj controller = new JobControllerObj();
-       /** Get companies with work periods and set */
-       Test.startTest();
-       controller.getWP();
-       Test.stopTest();
-       List <Account> companies = List<Account>([select Id, Name from Account Order by Name ASC]);   
-       List <Work_Period__c> wps = List<Work_Period__c>([Select Id, Name, Order__r.Id, Order__r.Account__r.Name, 
-                                   Rate__r.Id, Rate__r.Customer_Rate__c, Rate__r.Employer_Rate__c 
-                                   From Work_Period__c Where Order__r.Account__r.Id IN : companies Order by Name ASC]);  
-       System.assertEquals(wps[0].Name, 'Period Summer');
-     } 
-    
-    /** Data for tests */
+ 
+   /** Data for tests */
     @testSetup
     static void allTheDataForThisTestClass() {
         Account company1   = new Account(Name='Microsoft');
@@ -60,4 +26,37 @@ This class tests the Companies
         Work_Period__c wp2 = new Work_Period__c(Name='Period Summer', Start_date__c=Date.today().addDays(100), End_Date__c=Date.today().addDays(200), Order__c=order2.Id, Rate__c=rate2.Id);
         insert wp2;
     }
+    
+    /** testCompanies checks company that returns after call */
+    static testMethod void testCompanies() {
+       /** Use the PageReference Apex class to instantiate a page */
+       PageReference pageRef        = Page.JobPageTab;
+       Test.setCurrentPage(pageRef);
+       /** Instantiate and construct the controller class. */  
+       JobControllerObj controller  = new JobControllerObj();
+       /** Get companies with work periods and set */
+       Test.startTest();
+       List <Account> cmp           = controller.getCompany();
+       Test.stopTest();
+       List <Account> companies     = List<Account>([select Id, Name from Account Order by Name ASC]);   
+       System.assertEquals(companies[0].Name, 'Cisco');
+    }   
+    
+    /** testCompanies checks Work Periods that return after call */
+    static testMethod void testWorkPeriods() {
+       /** Use the PageReference Apex class to instantiate a page */
+       PageReference pageRef       = Page.JobPageTab;
+       Test.setCurrentPage(pageRef);
+       /** Instantiate and construct the controller class. */  
+       JobControllerObj controller = new JobControllerObj();
+       /** Get companies with work periods and set */
+       Test.startTest();
+       controller.getWP();
+       Test.stopTest();
+       List <Account> companies    = List<Account>([select Id, Name from Account Order by Name ASC]);   
+       List <Work_Period__c> wps   = List<Work_Period__c>([Select Id, Name, Order__r.Id, Order__r.Account__r.Name, 
+                                   Rate__r.Id, Rate__r.Customer_Rate__c, Rate__r.Employer_Rate__c 
+                                   From Work_Period__c Where Order__r.Account__r.Id IN : companies Order by Name ASC]);  
+       System.assertEquals(wps[0].Name, 'Period Summer');
+     } 
 }
