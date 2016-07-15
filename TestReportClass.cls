@@ -6,6 +6,15 @@ This class tests the ReportClass
 
   private class TestReportClass {
    
+   /** Data for tests */
+    @testSetup
+    static void allTheDataForThisTestClass() {
+        Account company1   = new Account(Name='Microsoft');
+        insert company1;
+        Account company2   = new Account(Name='Cisco');
+        insert company2;
+    }
+    
     /** testCompanies checks company that returns after call */
     static testMethod void testGetAccounts() {
        /** Use the PageReference Apex class to instantiate a page */
@@ -43,14 +52,4 @@ This class tests the ReportClass
        result = controller.myResults.containsAll(compare);
        System.assertEquals(result, true);
     }      
-        
-    /** Data for tests */
-    @testSetup
-    static void allTheDataForThisTestClass() {
-        Account company1   = new Account(Name='Microsoft');
-        insert company1;
-        Account company2   = new Account(Name='Cisco');
-        insert company2;
-      
-    }
 }
