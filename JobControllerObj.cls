@@ -28,7 +28,6 @@ public with sharing class JobControllerObj
      wps = new List<Work_Period__c>([Select Id, Name, Order__r.Id, Order__r.Account__r.Name, 
            Rate__r.Id, Rate__r.Customer_Rate__c, Rate__r.Employer_Rate__c 
            From Work_Period__c Order by Name ASC]); 
-     System.Debug(wps);
      return wps;
    }
    
@@ -40,7 +39,6 @@ public with sharing class JobControllerObj
        companies = new Set<Account>();
        for (Work_Period__c period: wps)
        {
-          System.Debug(period);
           companies.add(period.Order__r.Account__r);
        }
 
