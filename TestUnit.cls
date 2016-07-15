@@ -38,6 +38,4 @@ private class TestUnit {
         Test.stopTest();
         System.assertEquals(unitTwo.getHP(),0);
     }    
-
-
 }
