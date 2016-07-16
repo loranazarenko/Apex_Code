@@ -1,0 +1,75 @@
+<apex:page showHeader="true" sidebar="false" controller="updateAccountJSR">
+    <script>
+        var msgBox;
+        window.onload = function()
+        {
+          msgBox = document.getElementById("result");
+          msgBox.innerHTML += '<br/><br/><br/> Loading content..';
+          var accountId = window.location.search.substring(1).split('=')[1];
+          msgBox.innerHTML += '<br/> Loading account with Id '+accountId+'..';
+          loadAccount(accountId);
+        };
+
+        function hideTable()
+        {
+          msgBox.style.display = 'none';
+        }
+        
+        function loadAccount(accountId)
+        {
+            Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.updateAccountJSR.getAccountData}',
+            accountId,
+            function(result, event)
+            {
+              if(event.status)
+              {
+                var accountName = document.getElementById("accountName");
+                var accountId   = document.getElementById("accountId");
+                accountName.innerHTML = result.Name;
+                accountId.innerHTML   = result.Id;
+                msgBox.innerHTML += '<br/> Account info populated.';
+              }
+              else if (event.type === 'exception')
+              {
+                msgBox.innerHTML += '<br/>'+event.message + "<br/>\n<pre>" + event.where + "</pre>";
+              }
+              else
+              {
+                msgBox.innerHTML += '<br/>'+event.message;
+              }
+            }
+            );
+        }
+              
+    </script>
+    <style>
+      #result
+      {
+        width: 400px;
+        border:1px solid black;
+        font-size: 18px;
+        padding:20px;
+        float:left;
+      }
+      #accountInfo
+      {
+        width: 400px;
+        border:1px solid black;
+        font-size: 18px;
+        padding:20px;
+        margin-left: 20px;
+        float:left;
+      }
+    </style>
+    <div id='result'>
+      <input type="button" onClick="hideTable();" value="Hide Loading Table"/>
+    </div>
+    <div id='accountInfo'>
+      <h1>Account Info</h1>
+      <br/>
+      <p>Account Name: <span id='accountName'></span></p>
+      <p>Account Id: <span id='accountId'></span></p>
+      <br/>
+    </div>
+</apex:page>
