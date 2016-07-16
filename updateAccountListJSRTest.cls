@@ -6,19 +6,19 @@
 @isTest
 public class updateAccountListJSRTest 
 {
-    static testMethod void testUpdateAccountListJSR()
+    static testMethod void testNormalId()
     {
-        Account wrongAccount = new Account();
-        
         Account newAccount   = new Account();
         newAccount.Name      = 'Test trade firm';
         insert newAccount;
-    
-        /** Test case for empty id */
-        Test.startTest();
-        wrongAccount         = updateAccountJSR.getAccountData(newAccount.ID);
-        Test.stopTest();
         
-        System.assertEquals(wrongAccount.ID, newAccount.ID, 'Error: Account ID does not exist.');
+        /** Test case for right id */
+        Test.startTest();
+        newAccount           = updateAccountJSR.getAccountData(newAccount.ID);
+        Test.stopTest();
+        Account testAccount  = [SELECT Id, Name
+                        FROM Account
+                        WHERE Name =: 'Test trade firm'];
+        System.assertEquals(testAccount.ID, newAccount.ID, 'Congratulation!');
      }
 }
