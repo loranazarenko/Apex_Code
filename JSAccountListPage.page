@@ -1,0 +1,30 @@
+<apex:page controller="updateAccountListJSR">
+  <script type="text/javascript">
+    function getAccountList() 
+    {
+       Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.updateAccountListJSR.getAccountListData}',function(result, event)
+        {
+            if (event.status) 
+            {                    
+               for(var i=0;i<result.length;i++)
+               { 
+                  var acc = result[i];
+                  document.getElementById('res').innerHTML += acc.Id + ' - ' + acc.Name + '<br/>';
+               }
+            } 
+            else 
+            {
+               document.getElementById("res").innerHTML = event.message;
+            }
+        }, 
+           {escape: true}
+       );
+        return false;
+    }
+  </script>
+  <apex:form >
+    <apex:commandButton value="Get Account" onclick="return getAccountList()"/>
+    <div id="res"></div>
+  </apex:form>
+</apex:page>
