@@ -8,8 +8,6 @@
           var accountId = window.location.search.substring(1).split('=')[1];
           msgBox.innerHTML += '<br/> Loading account with Id '+accountId+'..';
           loadAccount(accountId);
-          loadAccounts();
-          
         };
 
         function hideTable()
@@ -43,35 +41,7 @@
             }
             );
         }
-        <br/>;   
-        function loadAccounts()
-        {
-            Visualforce.remoting.Manager.invokeAction(
-            '{!$RemoteAction.updateAccountJSR.getAccountData}',
-            accountId,
-            function(result, event)
-            {
-              if(event.status)
-              {
-                var accountName = document.getElementById("accountName");
-                var accountId   = document.getElementById("accountId");
-                accountName.innerHTML = result.Name;
-                accountId.innerHTML   = result.Id;
-                msgBox.innerHTML += '<br/> Account info populated.';
-              }
-              else if (event.type === 'exception')
-              {
-                msgBox.innerHTML += '<br/>'+event.message + "<br/>\n<pre>" + event.where + "</pre>";
-              }
-              else
-              {
-                msgBox.innerHTML += '<br/>'+event.message;
-              }
-            }
-            );
-        }   
-           
-              
+    
     </script>
     <style>
       #result
