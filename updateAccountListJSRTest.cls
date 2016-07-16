@@ -26,6 +26,6 @@ public class updateAccountListJSRTest
         wrongAccount         = updateAccountJSR.getAccountData(newAccount.ID);
         Test.stopTest();
         
-        system.assertEquals(wrongAccount.ID, newAccount.ID, 'Error: Account ID does not exist.');
+        System.assertEquals(wrongAccount.ID, newAccount.ID, 'Error: Account ID does not exist.');
      }
 }
