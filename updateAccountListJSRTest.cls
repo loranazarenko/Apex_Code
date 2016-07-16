@@ -13,14 +13,7 @@ public class updateAccountListJSRTest
         Account newAccount   = new Account();
         newAccount.Name      = 'Test trade firm';
         insert newAccount;
-        
-        Contact newContact   = new Contact();
-        newContact.FirstName = 'Robert';
-        newContact.LastName  = 'Rino';
-        newContact.Phone     = '123456'; 
-        newContact.AccountID = newAccount.ID;
-        insert newContact;
-        
+    
         /** Test case for empty id */
         Test.startTest();
         wrongAccount         = updateAccountJSR.getAccountData(newAccount.ID);
