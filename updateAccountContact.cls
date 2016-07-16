@@ -1,3 +1,8 @@
+/**
+*@author LNazarenko
+* This class provides first contact related input Account
+*/
+
 public with sharing class updateAccountContact
 {
     /** Constructor */
