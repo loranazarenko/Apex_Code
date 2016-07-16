@@ -1,3 +1,8 @@
+/**
+*@author LNazarenko
+* This class - custom Controller gets account for output on the visual page with @RemoteAction
+*/
+
 public with sharing class updateAccountJSR
 {
     @RemoteAction
